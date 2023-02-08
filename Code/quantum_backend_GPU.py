@@ -69,8 +69,8 @@ class Grover:
 
 	def compute_diffuser(self):
 		if self.verbose: print("Computing Diffuser...")
-		diffuser = cp.identity(2**self.bitnumber,dtype=cp.float32)
-		diffuser[0,0] = -1
+		diffuser = -1*cp.identity(2**self.bitnumber,dtype=cp.float32)
+		diffuser[0,0] = 1
 		diffuser = cp.matmul(self.hadamards,diffuser)
 		diffuser = cp.matmul(diffuser,self.hadamards)
 

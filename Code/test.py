@@ -15,7 +15,7 @@ def main():
 		import quantum_backend as quantum
 
 	database = []
-	length = 2**15
+	length = 2**14
 	for i in range(length):
 		database.append(0)
 	targets=1
