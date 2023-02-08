@@ -6,7 +6,7 @@ def measure(inputq=None):
 	"""
 	Measures the N qubit register, simulating quantum randomness.
 	Uses algorithm given in the PHYS379 Quantum Computer project notes.
-	inputq = state vector to be measured (numpy Array - Cannot be cupy array!)
+	inputq = state vector to be measured (numpy array - Cannot be cupy array!)
 	"""
 	if inputq is None:
 		raise SyntaxError("Qubit state vector to measure not specified!")
@@ -18,7 +18,7 @@ def measure(inputq=None):
 		q += state_component**2 # Adds value to existing q
 		if q > r:
 			return i # Returns the measured bit state in its decimal representation
-	return len(inputq)-1
+	return len(inputq)-1	# Necessary due to floating point imprecision for large qubit counts
 
 def extend_unary(targets=None,gate=None,bits=None,verbose=None):
 	"""
