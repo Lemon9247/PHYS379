@@ -1,0 +1,8 @@
+working to implement grover's search algorithm on an existing database!
+(go through list of exoplanets? covid spread statistics?)
+
+ana will ask her astro friend about a database we could use
+
+make multi qubit gate program for next week!
+
+can't implement AND, OR
