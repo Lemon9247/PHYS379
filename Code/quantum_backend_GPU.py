@@ -24,7 +24,7 @@ def extend_unary(targets=None,gate=None,bits=None,verbose=None):
 	"""
 	Extend unary gate to an N qubit state. If no target is supplied then the gate is applied to all qubits.
 	targets = indices of qubits the gate is applied to. Indexing of qubits starts from ZERO! (int list)
-	gate = unary gate to be extended to a multi-qubit state. (2D complex numpy array, size 2*2)
+	gate = unary gate to be extended to a multi-qubit state. (2D cupy array, size 2*2)
 	bits = number of qubits (int)
 	"""
 	if gate is None:
@@ -79,16 +79,16 @@ class Grover:
 
 	def compute_oracle(self,oracle_function):
 		if self.verbose: print("Computing Quantum Oracle...")
-		quantum_oracle = np.identity(2**self.bitnumber)
+		quantum_oracle = cp.identity(2**self.bitnumber,dtype=cp.float32)
 		for i in range(2**self.bitnumber):	# Construct oracle on CPU as looping over elements on the GPU is slow
 			try:	# Use try/except in case the number of bits exceeds original register bitlength
 				if oracle_function(i):
 					quantum_oracle[i,i] = -1
 			except:
 				continue
-		quantum_oracle_gpu = cp.asarray(quantum_oracle,dtype=cp.float32)
+
 		if self.verbose: print("Done!")
-		return quantum_oracle_gpu
+		return quantum_oracle
 
 	def search(self,iterations):
 		"""
