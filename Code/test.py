@@ -12,10 +12,10 @@ def main():
 	if GPU:
 		import quantum_backend_GPU as quantum
 	else:
-		import quantum_backend as quantum
+		import quantum_backend_GPU as quantum
 
 	database = []
-	length = 2**10
+	length = 2**2
 	for i in range(length):
 		database.append(0)
 	targets=1
@@ -32,7 +32,7 @@ def main():
 	bits = int(np.ceil(np.log2(len(database))))
 	iterations = int(np.ceil(np.sqrt(len(database)/targets)))
 	print(iterations)
-
+	quantum.Grover(f,1)
 	start_time=time.time()
 	J = quantum.Grover(f,bits,verbose=True)
 	T=[]
@@ -58,6 +58,8 @@ def main():
 	plt.ylabel("Frequency")
 	end_time=time.time()
 	print("Runtime: {}s".format(end_time-start_time))
+	del J
+	if GPU: cp._default_memory_pool.free_all_blocks()
 	plt.show()
 
 if __name__=="__main__":

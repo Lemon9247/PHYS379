@@ -20,35 +20,29 @@ def measure(inputq=None):
 			return i # Returns the measured bit state in its decimal representation
 	return len(inputq)-1	# Necessary due to floating point imprecision for large qubit counts
 
-def extend_unary(targets=None,gate=None,bits=None,verbose=None):
+def extend_hadamards(bits=None,verbose=None):
 	"""
 	Extend unary gate to an N qubit state. If no target is supplied then the gate is applied to all qubits.
 	targets = indices of qubits the gate is applied to. Indexing of qubits starts from ZERO! (int list)
 	gate = unary gate to be extended to a multi-qubit state. (2D cupy array, size 2*2)
 	bits = number of qubits (int)
 	"""
-	if gate is None:
-		raise SyntaxError("No gate specified")
 	if bits is None:
 		raise SyntaxError("Number of qubits not specified")
 	if verbose is None:
 		verbose = False
 
-	temp_gate = cp.array(1,dtype=cp.float32)
-	if targets is None:
-		for i in range(bits):
-			temp_gate = cp.kron(temp_gate,gate)
-			if verbose: print("Computed {}/{} tensor products".format(i+1,bits), end="\r",flush=True)
+	if bits == 1:
+		return 1/(np.sqrt(2))*cp.array([[1,1],[1,-1]],dtype=cp.float32)
 	else:
-		for i in range(bits):
-			if i in targets:
-				temp_gate = cp.kron(temp_gate,gate)
-			else: # Insert an identity matrix to act on a different qubit
-				temp_gate = cp.kron(temp_gate,cp.identity(2,dtype=cp.float32))
-			if verbose: print("Computed {}/{} tensor products".format(i+1,bits), end="\r",flush=True)
-	
-	if verbose: print()
-	return temp_gate
+		kron = 1/(np.sqrt(2))*cp.array([[1,1],[1,-1]],dtype=cp.float32)
+		temp_gate = 1/(np.sqrt(2))*cp.array([[1,1],[1,-1]],dtype=cp.float32)
+		for i in range(bits-1):
+			temp_gate = cp.kron(temp_gate,kron)
+			if verbose: print("Computed {}/{} tensor products".format(i+1,bits-1), end="\r",flush=True)
+		
+		if verbose: print()
+		return temp_gate
 
 class Grover:
 
@@ -60,8 +54,7 @@ class Grover:
 		self.bitnumber = bits
 
 		if self.verbose: print("Computing Hadamard Network...")
-		hadamard_gate = 1/(np.sqrt(2))*cp.array([[1,1],[1,-1]],dtype=cp.float32)
-		self.hadamards = extend_unary(gate=hadamard_gate,bits=self.bitnumber,verbose=self.verbose)
+		self.hadamards = extend_hadamards(bits=self.bitnumber,verbose=self.verbose)
 		if self.verbose: print("Done!")
 
 		self.diffuser = self.compute_diffuser()
@@ -111,3 +104,7 @@ class Grover:
 		target_cpu = cp.asnumpy(target)
 		if self.verbose: print("Done!")
 		return target_cpu
+
+# Create temporary instance of Grover class to initialise backend
+Grover(lambda x: True if x == 1 else False,1)
+print("GPU backend ready!")
