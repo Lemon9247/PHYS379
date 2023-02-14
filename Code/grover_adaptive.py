@@ -24,9 +24,8 @@ def adaptive_search(database,threshold):
 	x_0 = random.randint(0,len(database)-1)
 	scaling = 1.34
 	m = 1
-	searching = True
 	fails = 0
-	while searching:
+	while fails < threshold:
 		iterations = random.randint(1,np.ceil(m))
 		J = quantum.Grover(lambda x: adaptive_oracle(x,x_0,database),bits)
 		q = J.search(iterations)
@@ -38,8 +37,6 @@ def adaptive_search(database,threshold):
 			fails = 0
 		else:
 			fails += 1
-			if fails == threshold:
-				searching = False
 		m = scaling*m
 	#print(x_0)
 	#print(database[x_0])
@@ -49,30 +46,38 @@ def adaptive_search(database,threshold):
 
 def main():
 	shots = 100
-	T = []
-	bits = 5
-	threshold = 10
+	bigshots = 10
+	outputs = [[] for i in range(bigshots)]
+	bits = 10
+	threshold = 5
 	database = get_database(bits)
-	for i in range(shots):
-		t = adaptive_search(database,threshold)
-		T.append(t)
-		print("Completed {}/{} shots".format(i+1,shots),end="\r",flush=True)
+	for j in range(bigshots):
+		for i in range(shots):
+			t = adaptive_search(database,threshold)
+			outputs[j].append(t)
+			print("Completed {}/{} shots, {}/{} bigshots".format(i+1,shots,j,bigshots),end="\r",flush=True)
+	print("Completed {}/{} shots, {}/{} bigshots".format(shots,shots,bigshots,bigshots),end="\r",flush=True)	
 	print("\nDone!")
-	readings = []
-	freq = []
-	for i in range(2**bits):
-		readings.append(i)
-		freq.append(0)
-	for i in T:
-		freq[i] += 1
-	x = np.array(readings)
-	y = np.array(freq)
+	
+	freq = [[0 for i in range(bigshots)] for j in range(2**bits)]
+	for i in range(len(outputs)):
+		for j in outputs[i]:
+			freq[j][i] += 1
+	x = np.array([i for i in range(2**bits)])
+	y,errors = [],[]
+	for freq_list in freq:
+		y.append(np.mean(freq_list))
+		errors.append(np.std(freq_list))
 
-	plt.scatter(x,y)
+	plt.errorbar(x, y, yerr=errors, fmt="o", ecolor='gray', elinewidth=0.75, capsize=3)
 	plt.xlabel("Database Register")
 	plt.ylabel("Frequency")
-	error_rate=100-freq[0]
-	print("Error rate: {}%".format(error_rate))
+	plt.title(
+		"Frequency plot of average output of the Durr-Hoyer Algorithm for {} trials of {} shots".format(bigshots,shots)
+		)
+	fail_rate=100-y[0]
+	fail_rate_error=errors[0]
+	print("Fail rate: ({} +/- {})%".format(fail_rate,fail_rate_error))
 	cp._default_memory_pool.free_all_blocks()
 	plt.show()
 
