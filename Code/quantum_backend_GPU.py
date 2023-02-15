@@ -18,7 +18,7 @@ def measure(inputq=None):
 		q += state_component**2 # Adds value to existing q
 		if q > r:
 			return i # Returns the measured bit state in its decimal representation
-	return len(inputq)-1	# Necessary due to floating point imprecision for large qubit counts
+	return len(inputq)-1 # Necessary due to floating point imprecision for large qubit counts
 
 def extend_hadamards(bits=None,verbose=None):
 	"""

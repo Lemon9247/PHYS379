@@ -40,27 +40,27 @@ def adaptive_search(database,threshold):
 	cp._default_memory_pool.free_all_blocks()
 	return x_0
 
-def multi_trial_durr_hoyer(shots,bigshots,database,threshold):
-	outputs = [[] for i in range(bigshots)]
+def multi_trial_durr_hoyer(shots,trials,database,threshold):
+	outputs = [[] for i in range(trials)]
 	bits = int(np.ceil(np.log2(len(database))))
-	for j in range(bigshots):
+	for j in range(trials):
 		for i in range(shots):
 			t = adaptive_search(database,threshold)
 			outputs[j].append(t)
-			print("Completed {}/{} shots, {}/{} bigshots".format(i+1,shots,j,bigshots),end="\r",flush=True)
-	print("Completed {}/{} shots, {}/{} bigshots".format(shots,shots,bigshots,bigshots),end="\r",flush=True)	
+			print("Completed {}/{} shots, {}/{} trials".format(i+1,shots,j,trials),end="\r",flush=True)
+	print("Completed {}/{} shots, {}/{} trials".format(shots,shots,trials,trials),end="\r",flush=True)	
 	print("\nDone!")
-	freq = [[0 for i in range(bigshots)] for j in range(2**bits)]
+	freq = [[0 for i in range(trials)] for j in range(2**bits)]
 	for i in range(len(outputs)):
 		for j in outputs[i]:
 			freq[j][i] += 1
 	return freq
 
-def main1(shots,bigshots,bits):
+def main1(shots,trials,bits):
 	threshold = 5
 	database = get_database(bits)
 
-	freq = multi_trial_durr_hoyer(shots,bigshots,database,threshold)
+	freq = multi_trial_durr_hoyer(shots,trials,database,threshold)
 	x = np.array([i for i in range(2**bits)])
 	y,errors = [],[]
 	for freq_list in freq:
@@ -72,7 +72,7 @@ def main1(shots,bigshots,bits):
 	plt.ylabel("Frequency")
 	plt.title(
 		"""Frequency plot of average output of the Durr-Hoyer Algorithm
-for {} trials of {} shots""".format(bigshots,shots)
+for {} trials of {} shots""".format(trials,shots)
 		)
 	fail_rate=100-y[0]
 	fail_rate_error=errors[0]
@@ -80,30 +80,28 @@ for {} trials of {} shots""".format(bigshots,shots)
 	cp._default_memory_pool.free_all_blocks()
 	plt.show()
 
-def main2(shots,bigshots,bits):
+def main2(shots,trials,bits):
 	thresholds = [i for i in range(1,10+1)]
 	database = get_database(bits)
 
-	fail_rates = []
-	fail_rate_errors = []
+	fail_rates, fail_rate_errors = [],[]
 	for threshold in thresholds:
-		print("Threshold:",threshold)
-		freq = multi_trial_durr_hoyer(shots,bigshots,database,threshold)
+		freq = multi_trial_durr_hoyer(shots,trials,database,threshold)
 		
 		fail=100-np.mean(freq[0])
 		fail_error=np.std(freq[0])
-		print(fail,fail_error)
+		print("Fail rate: ({} +/- {})%".format(fail,fail_error))
 		fail_rates.append(fail)
 		fail_rate_errors.append(fail_error)
 	plt.errorbar(thresholds, fail_rates, yerr=fail_rate_errors, fmt="o", ecolor='gray', elinewidth=0.75, capsize=3)
-	plt.xlabel("Threshold")
+	plt.xlabel("Termination Threshold")
 	plt.ylabel("Failed Searches")
 	plt.title(
 		"""Mean number of failed shots of the Durr-Hoyer Algorithm
-for {} trials of {} shots for different termination thresholds with {} qubits""".format(bigshots,shots,bits)
+for {} trials of {} shots for different termination thresholds with {} qubits""".format(trials,shots,bits)
 		)
 	cp._default_memory_pool.free_all_blocks()
 	plt.show()
 
 if __name__=="__main__":
-	main2(shots=100,bigshots=10,bits=10)
+	main2(shots=100,trials=10,bits=10)
