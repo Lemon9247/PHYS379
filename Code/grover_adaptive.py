@@ -86,6 +86,7 @@ def main2(shots,trials,bits):
 
 	fail_rates, fail_rate_errors = [],[]
 	for threshold in thresholds:
+		print("Threshold:",threshold)
 		freq = multi_trial_durr_hoyer(shots,trials,database,threshold)
 		
 		fail=100-np.mean(freq[0])
