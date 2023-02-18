@@ -1,8 +1,9 @@
 import numpy as np
 import cupy as cp
-import random
-import quantum_backend_GPU as quantum
 import matplotlib.pyplot as plt
+import random, csv
+import quantum_backend_GPU as quantum
+
 
 def get_database(bits):
 	database = []
@@ -12,16 +13,34 @@ def get_database(bits):
 	database[0]=0
 	return database
 
+def import_ESI_data():
+	with open("esi.csv",newline="") as file:
+		data_reader = csv.reader(file,delimiter=",")
+		data = [row for row in data_reader]
+		del data[0]		# Remove Names/ESI line at the start of the file
+		data_length = len(data)
+		bits = int(np.ceil(np.log2(data_length)))
+		entries = 2**bits
+		for i in range(entries-data_length):	# Ensure the database length is a power of 2
+			data.append(None)
+	return data
+
 def adaptive_oracle(x,x_0,database):
-	Y = database[x_0]
-	if database[x] < Y:
-		return 1
-	else:
+	Y = database[x_0][1]
+	try:
+		if database[x][1] > Y:
+			return 1
+		else:
+			return 0
+	except:
 		return 0
 
 def adaptive_search(database,threshold):
 	bits = int(np.ceil(np.log2(len(database))))
-	x_0 = random.randint(0,len(database)-1)
+	while True:
+		x_0 = random.randint(0,len(database)-1)
+		if database[x_0] is not None:
+			break
 	scaling = 1.34
 	m = 1
 	fails = 0
@@ -57,8 +76,8 @@ def multi_trial_durr_hoyer(shots,trials,database,threshold):
 	return freq
 
 def main1(shots,trials,bits):
-	threshold = 5
-	database = get_database(bits)
+	threshold = 9
+	database = import_ESI_data()
 
 	freq = multi_trial_durr_hoyer(shots,trials,database,threshold)
 	x = np.array([i for i in range(2**bits)])
@@ -70,12 +89,17 @@ def main1(shots,trials,bits):
 	plt.errorbar(x, y, yerr=errors, fmt="o", ecolor='gray', elinewidth=0.75, capsize=3)
 	plt.xlabel("Database Register")
 	plt.ylabel("Frequency")
+	#plt.title(
+	#	"""Frequency plot of average output of the Durr-Hoyer Algorithm
+#for {} trials of {} shots""".format(trials,shots)
+	#	)
 	plt.title(
-		"""Frequency plot of average output of the Durr-Hoyer Algorithm
-for {} trials of {} shots""".format(trials,shots)
+		"""Frequency plot of the Durr-Hoyer Algorithm for {} shots
+when applied to the ESI database to find the most habitable planet""".format(shots)
 		)
-	fail_rate=100-y[0]
-	fail_rate_error=errors[0]
+	true_target_pos = 636
+	fail_rate=100-y[true_target_pos]
+	fail_rate_error=errors[true_target_pos]
 	print("Fail rate: ({} +/- {})%".format(fail_rate,fail_rate_error))
 	cp._default_memory_pool.free_all_blocks()
 	plt.show()
@@ -105,4 +129,4 @@ for {} trials of {} shots for different termination thresholds with {} qubits"""
 	plt.show()
 
 if __name__=="__main__":
-	main2(shots=100,trials=10,bits=10)
+	main1(shots=100,trials=1,bits=10)
