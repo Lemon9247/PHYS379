@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Options
+
 class Grover:
 
 	def __init__(self,oracle_function,bits,verbose=None):
@@ -76,6 +78,8 @@ class Grover:
 def main():
 	database = []
 	length = 2**5
+
+	service = QiskitRuntimeService(channel="ibm_quantum", token="d3af0ce8c5b71e2209966865c7116d786b01d7fea4462bb74467986202181701eb74190653a02ee77087f4db1e0c2e96b2e60a5e8d8eea7799267123fe92ec08")
 	for i in range(length):
 		database.append(0)
 	targets=1
@@ -88,20 +92,21 @@ def main():
 		else:
 			return False
 			
-	print(len(database))
 	bits = int(np.ceil(np.log2(len(database))))
 	iterations = int(np.ceil(np.sqrt(len(database)/targets)))
-	print(iterations)
 	J = Grover(f,bits,verbose=True)
 	J.search(iterations)
 	shots = 1024
 	counts = []
-	simulator = Aer.get_backend('aer_simulator')
-	for i in range(4):
-		job = simulator.run(J.circuit, shots=shots)
-		result = job.result()
-		c = result.get_counts(J.circuit)
-		counts.append(c)
+	options = Options(optimization_level=1)
+	options.execution.shots = 1024
+	for i in range(1):
+		with Session(service=service, backend="ibmq_manila") as session:
+			sampler = Sampler(session=session, options=options)
+			job = sampler.run(circuits=J.circuit)
+			result = job.result()
+			c = result.get_counts(J.circuit)
+			counts.append(c)
 	legend = ['First execution', 'Second execution', 'Third execution', 'Fourth execution']
 	plot_histogram([counts[0], counts[1], counts[2], counts[3]], legend=legend, figsize=(7, 5), bar_labels=False)
 	plt.tight_layout()
