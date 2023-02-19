@@ -69,7 +69,7 @@ class Grover:
 
 		for i in range(iterations):
 			self.circuit.unitary(self.quantum_oracle, range(self.bitnumber), label='ORACLE')
-			self.circuit = Grover.diffusion(self.reflector,self.circuit,self.bitnumber)
+			self.circuit = self.diffusion(self.reflector,self.circuit,self.bitnumber)
 			if self.verbose: print("Started {}/{} Grover Iterations".format(i+1,iterations),end="\r",flush=True)
 		self.circuit.measure_all()
 
