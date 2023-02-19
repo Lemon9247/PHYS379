@@ -29,11 +29,11 @@ def adaptive_oracle(x,x_0,database):
 	Y = database[x_0][1]
 	try:
 		if database[x][1] > Y:
-			return 1
+			return True
 		else:
-			return 0
+			return False
 	except:
-		return 0
+		return False
 
 def adaptive_search(database,threshold):
 	bits = int(np.ceil(np.log2(len(database))))
