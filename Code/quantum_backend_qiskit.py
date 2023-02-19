@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Options
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler
 
 class Grover:
 
@@ -98,12 +98,10 @@ def main():
 	J.search(iterations)
 	shots = 1024
 	counts = []
-	options = Options(optimization_level=1)
-	options.execution.shots = 1024
 	for i in range(1):
 		with Session(service=service, backend="ibmq_manila") as session:
-			sampler = Sampler(session=session, options=options)
-			job = sampler.run(circuits=J.circuit)
+			sampler = Sampler(session=session)
+			job = sampler.run(circuits=J.circuit,shots=1024)
 			result = job.result()
 			c = result.get_counts(J.circuit)
 			counts.append(c)
