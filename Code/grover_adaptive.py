@@ -56,10 +56,10 @@ def adaptive_search(database,threshold):
 	fails = 0
 	while fails < threshold:
 		iterations = random.randint(1,np.ceil(m))
-		J = quantum.Grover(lambda x: adaptive_oracle(x,x_0,database),bits)
+		J = quantum.Grover(lambda x: adaptive_oracle2(x,x_0,database),bits)
 		q = J.search(iterations)
 		x_1 = quantum.measure(q)
-		if adaptive_oracle(x_1,x_0,database):
+		if adaptive_oracle2(x_1,x_0,database):
 			x_0 = x_1
 			fails = 0
 		else:
@@ -87,7 +87,7 @@ def multi_trial_durr_hoyer(shots,trials,database,threshold):
 
 def main1(shots,trials,bits):
 	threshold = 9
-	database = import_ESI_data()
+	database = get_database(bits)
 
 	freq = multi_trial_durr_hoyer(shots,trials,database,threshold)
 	x = np.array([i for i in range(2**bits)])

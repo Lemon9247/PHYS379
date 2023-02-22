@@ -20,29 +20,66 @@ def measure(inputq=None):
 			return i # Returns the measured bit state in its decimal representation
 	return len(inputq)-1 # Necessary due to floating point imprecision for large qubit counts
 
-def extend_hadamards(bits=None,verbose=None):
+def extend_unary(targets=None,gate=None,bits=None,verbose=None):
 	"""
 	Extend unary gate to an N qubit state. If no target is supplied then the gate is applied to all qubits.
 	targets = indices of qubits the gate is applied to. Indexing of qubits starts from ZERO! (int list)
 	gate = unary gate to be extended to a multi-qubit state. (2D cupy array, size 2*2)
 	bits = number of qubits (int)
 	"""
+	if gate is None:
+		raise SyntaxError("No gate specified")
 	if bits is None:
 		raise SyntaxError("Number of qubits not specified")
 	if verbose is None:
 		verbose = False
 
-	if bits == 1:
-		return 1/(np.sqrt(2))*cp.array([[1,1],[1,-1]],dtype=cp.float32)
+	temp_gate = cp.array(1,dtype=cp.float32)
+	if targets is None:
+		for i in range(bits):
+			temp_gate = cp.kron(temp_gate,gate)
+			if verbose: print("Computed {}/{} tensor products".format(i+1,bits),end="\r",flush=True)
 	else:
-		kron = 1/(np.sqrt(2))*cp.array([[1,1],[1,-1]],dtype=cp.float32)
-		temp_gate = 1/(np.sqrt(2))*cp.array([[1,1],[1,-1]],dtype=cp.float32)
-		for i in range(bits-1):
-			temp_gate = cp.kron(temp_gate,kron)
-			if verbose: print("Computed {}/{} tensor products".format(i+1,bits-1), end="\r",flush=True)
-		
-		if verbose: print()
-		return temp_gate
+		for i in range(bits):
+			if i in targets:
+				temp_gate = cp.kron(temp_gate,gate)
+			else: # Insert an identity matrix to act on a different qubit
+				temp_gate = cp.kron(temp_gate,cp.identity(2,dtype=cp.float32))
+			if verbose: print("Computed {}/{} tensor products".format(i+1,bits),end="\r",flush=True)
+	if verbose: print()
+	return temp_gate
+
+def get_error_matrix(bits):
+	# Define generators of U(2) and the identity matrix
+	X = cp.array([[0,1],[1,0]])
+	Y = cp.array([[0,-1j],[1j,0]])
+	Z = cp.array([[1,0],[0,-1]])
+	I = cp.array([[1,0],[0,1]])
+
+	# Create a list of targets to apply random error "gates" to
+	targets = [[random.randint(0,bits-1)]]
+	for i in range(bits):
+		if i in targets:
+			continue
+		elif random.random() <= 0.2:
+			targets.append([i])
+	
+	matrices = []
+	for target in targets:
+		n_vec = cp.random.rand(3)	# Create randomised axis vector for the gate
+		for i,component in enumerate(n_vec):
+			n_vec[i] = component*((-1)**random.randint(0,1))	# Flip sign of components at random
+		n_vec = n_vec/cp.linalg.norm(n_vec)		# Ensure the axis vector is normalised
+		angle = (np.pi/2)*random.random()	# Pick a random angle between 0 and pi/2
+		matrix = cp.cos(angle/2)*I-1j*np.sin(angle/2)*(n_vec[0]*X+n_vec[1]*Y+n_vec[2]*Z)	# Construct the gate
+		extended_matrix = extend_unary(targets=target,gate=matrix,bits=bits)	# Extend the gate to the multi-qubit setup
+		matrices.append(extended_matrix)
+
+	# Multiply all the error "gates" together to construct the overall error gate
+	error_matrix = cp.identity(2**bits,dtype=cp.float32)
+	for matrix in matrices:
+		error_matrix = cp.matmul(error_matrix,matrix)
+	return error_matrix
 
 class Grover:
 
@@ -52,9 +89,9 @@ class Grover:
 		else:
 			self.verbose = verbose
 		self.bitnumber = bits
-
+		hadamard_gate = 1/(np.sqrt(2))*cp.array([[1,1],[1,-1]],dtype=cp.float32)
 		if self.verbose: print("Computing Hadamard Network...")
-		self.hadamards = extend_hadamards(bits=self.bitnumber,verbose=self.verbose)
+		self.hadamards = extend_unary(gate=hadamard_gate,bits=self.bitnumber,verbose=self.verbose)
 		if self.verbose: print("Done!")
 
 		self.diffuser = self.compute_diffuser()
@@ -108,3 +145,4 @@ class Grover:
 # Create temporary instance of Grover class to initialise backend
 Grover(lambda x: True if x == 1 else False,1)
 print("GPU backend ready!")
+random_unitary_matrix(10)
