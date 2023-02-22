@@ -30,7 +30,7 @@ def diffusion(x,circuit): #x is number of qubits
     circuit = hadamard(circuit,x)
     return circuit
 
-n = 3 #number of qubits
+n = 10 #number of qubits
 circuit = QuantumCircuit(n)
 simulator = Aer.get_backend('aer_simulator')
 

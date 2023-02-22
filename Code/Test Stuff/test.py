@@ -20,7 +20,7 @@ def main():
 		database.append(0)
 	targets=1
 	for i in range(targets):
-		database[random.randint(0,length-1)]=1
+		database[0]=1
 
 	def f(x):
 		if database[x] == 1:

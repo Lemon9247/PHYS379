@@ -1,10 +1,13 @@
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit import Aer, transpile
 from qiskit.visualization import plot_histogram
+from qiskit_ibm_provider import IBMProvider
+from qiskit.providers.jobstatus import JobStatus
 import qiskit.quantum_info as qi
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+import time
 
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler
 
@@ -79,12 +82,9 @@ def main():
 	database = []
 	length = 2**5
 
-	service = QiskitRuntimeService(channel="ibm_quantum", token="d3af0ce8c5b71e2209966865c7116d786b01d7fea4462bb74467986202181701eb74190653a02ee77087f4db1e0c2e96b2e60a5e8d8eea7799267123fe92ec08")
 	for i in range(length):
 		database.append(0)
-	targets=1
-	for i in range(targets):
-		database[random.randint(0,length-1)]=1
+	database[0]=1
 
 	def f(x):
 		if database[x] == 1:
@@ -93,20 +93,50 @@ def main():
 			return False
 			
 	bits = int(np.ceil(np.log2(len(database))))
-	iterations = int(np.ceil(np.sqrt(len(database)/targets)))
+	iterations = int(np.ceil(np.sqrt(len(database))))
 	J = Grover(f,bits,verbose=True)
 	J.search(iterations)
 	shots = 1024
 	counts = []
-	for i in range(1):
-		with Session(service=service, backend="ibmq_manila") as session:
-			sampler = Sampler(session=session)
-			job = sampler.run(circuits=J.circuit,shots=1024)
-			result = job.result()
-			c = result.get_counts(J.circuit)
-			counts.append(c)
-	legend = ['First execution', 'Second execution', 'Third execution', 'Fourth execution']
-	plot_histogram([counts[0], counts[1], counts[2], counts[3]], legend=legend, figsize=(7, 5), bar_labels=False)
+	#simulator = Aer.get_backend('aer_simulator')
+	# for i in range(4):
+	# 	job = simulator.run(J.circuit, shots=1000)
+	# 	result = job.result()
+	# 	c = result.get_counts(J.circuit)
+	# 	counts.append(c)
+
+	#IBMProvider.save_account(token="d3af0ce8c5b71e2209966865c7116d786b01d7fea4462bb74467986202181701eb74190653a02ee77087f4db1e0c2e96b2e60a5e8d8eea7799267123fe92ec08")
+	provider = IBMProvider()
+	backend = provider.get_backend("ibm_oslo")
+	#service = QiskitRuntimeService(channel="ibm_quantum", token="d3af0ce8c5b71e2209966865c7116d786b01d7fea4462bb74467986202181701eb74190653a02ee77087f4db1e0c2e96b2e60a5e8d8eea7799267123fe92ec08")
+	transpiled_circuit = transpile(J.circuit)
+	job = backend.run(transpiled_circuit, shots=shots, dynamic=True)
+	print(f"Job ID is {job.job_id()}")
+	try:
+		while True:
+			job_status = job.status()  # Query the backend server for job status.
+			if job_status is JobStatus.RUNNING:
+				print(job.status())
+			else:
+				break
+			time.sleep(10)
+	except IBMQJobApiError as ex:
+		print("Something wrong happened!: {}".format(ex))
+	print(f"Job result is {job.result()}")
+	# with Session(service=service, backend="ibm_oslo") as session:
+	# 	sampler = Sampler(session=session)
+	# 	job = sampler.run(circuits=J.circuit,shots=1024)
+	# 	print(f"Job ID is {job.job_id()}")
+	# 	result = job.result()
+	# 	print(f"Job result is {job.result()}")
+	# 	c = result.get_counts(J.circuit)
+	# 	counts.append(c)
+
+	# legend = ['First execution', 'Second execution', 'Third execution', 'Fourth execution']
+	# plot_histogram([counts[0], counts[1], counts[2], counts[3]], legend=legend, figsize=(7, 5), bar_labels=False)
+	# plt.tight_layout()
+	# plt.show()
+	plot_histogram([counts[0]], figsize=(7, 5), bar_labels=False)
 	plt.tight_layout()
 	plt.show()
 
