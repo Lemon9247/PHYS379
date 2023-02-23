@@ -107,7 +107,7 @@ def main1(shots,trials,bits):
 		"""Frequency plot of the Durr-Hoyer Algorithm for {} shots
 when applied to the ESI database to find the most habitable planet""".format(shots)
 		)
-	true_target_pos = 636
+	true_target_pos = 0
 	fail_rate=100-y[true_target_pos]
 	fail_rate_error=errors[true_target_pos]
 	print("Fail rate: ({} +/- {})%".format(fail_rate,fail_rate_error))

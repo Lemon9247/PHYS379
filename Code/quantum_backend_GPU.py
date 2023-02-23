@@ -70,7 +70,7 @@ def get_error_matrix(bits):
 		for i,component in enumerate(n_vec):
 			n_vec[i] = component*((-1)**random.randint(0,1))	# Flip sign of components at random
 		n_vec = n_vec/cp.linalg.norm(n_vec)		# Ensure the axis vector is normalised
-		angle = (np.pi/2)*random.random()	# Pick a random angle between 0 and pi/2
+		angle = (np.pi/8)*random.random()	# Pick a random angle between 0 and pi/8
 		matrix = cp.cos(angle/2)*I-1j*np.sin(angle/2)*(n_vec[0]*X+n_vec[1]*Y+n_vec[2]*Z)	# Construct the gate
 		extended_matrix = extend_unary(targets=target,gate=matrix,bits=bits)	# Extend the gate to the multi-qubit setup
 		matrices.append(extended_matrix)
@@ -145,4 +145,3 @@ class Grover:
 # Create temporary instance of Grover class to initialise backend
 Grover(lambda x: True if x == 1 else False,1)
 print("GPU backend ready!")
-random_unitary_matrix(10)
