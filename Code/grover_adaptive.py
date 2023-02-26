@@ -57,7 +57,7 @@ def adaptive_search(database,threshold):
 	while fails < threshold:
 		iterations = random.randint(1,np.ceil(m))
 		J = quantum.Grover(lambda x: adaptive_oracle2(x,x_0,database),bits)
-		q = J.search(iterations)
+		q = J.search(iterations,errorp=0.2)
 		x_1 = quantum.measure(q)
 		if adaptive_oracle2(x_1,x_0,database):
 			x_0 = x_1
@@ -139,4 +139,4 @@ for {} trials of {} shots for different termination thresholds with {} qubits"""
 	plt.show()
 
 if __name__=="__main__":
-	main1(shots=100,trials=1,bits=10)
+	main1(shots=100,trials=1,bits=6)

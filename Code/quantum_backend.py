@@ -48,6 +48,39 @@ def extend_unary(targets=None,gate=None,bits=None,verbose=None):
 	if verbose: print()
 	return temp_gate
 
+
+def get_error_matrix(bits,errorp):
+	# Define generators of U(2) and the identity matrix
+	X = np.array([[0,1],[1,0]])
+	Y = np.array([[0,-1j],[1j,0]])
+	Z = np.array([[1,0],[0,-1]])
+	I = np.array([[1,0],[0,1]])
+
+	# Create a list of targets to apply random error "gates" to
+	targets = [[random.randint(0,bits-1)]]
+	for i in range(bits):
+		if i in targets:
+			continue
+		elif random.random() <= errorp:
+			targets.append([i])
+	
+	matrices = []
+	for target in targets:
+		n_vec = np.random.rand(3)	# Create randomised axis vector for the gate
+		for i,component in enumerate(n_vec):
+			n_vec[i] = component*((-1)**random.randint(0,1))	# Flip sign of components at random
+		n_vec = n_vec/np.linalg.norm(n_vec)		# Ensure the axis vector is normalised
+		angle = (np.pi/8)*random.random()	# Pick a random angle between 0 and pi/8
+		matrix = np.cos(angle/2)*I-1j*np.sin(angle/2)*(n_vec[0]*X+n_vec[1]*Y+n_vec[2]*Z)	# Construct the gate
+		extended_matrix = extend_unary(targets=target,gate=matrix,bits=bits)	# Extend the gate to the multi-qubit setup
+		matrices.append(extended_matrix)
+
+	# Multiply all the error "gates" together to construct the overall error gate
+	error_matrix = np.identity(2**bits,dtype=np.float32)
+	for matrix in matrices:
+		error_matrix = np.matmul(error_matrix,matrix)
+	return error_matrix
+
 class Grover:
 
 	def __init__(self, oracle_function, bits, verbose=None):
@@ -88,7 +121,7 @@ class Grover:
 		if self.verbose: print("Done!")
 		return quantum_oracle
 
-	def search(self,iterations):
+	def search(self,iterations,errorp=None):
 		"""
 		Performs a Grover Search for a given number of iterations. Returns a numpy array.
 		Iterations: The number of iterations to compute (int)
@@ -99,8 +132,14 @@ class Grover:
 
 		circuit = np.identity(2**self.bitnumber,dtype=np.float32)
 		for i in range(iterations):
+			if errorp is not None:
+				if random.random() <= errorp: circuit=np.matmul(circuit,get_error_matrix(self.bitnumber,errorp))
 			circuit = np.matmul(circuit,self.quantum_oracle)
+			if errorp is not None:
+				if random.random() <= errorp: circuit=np.matmul(circuit,get_error_matrix(self.bitnumber,errorp))
 			circuit = np.matmul(circuit,self.diffuser)
+			if errorp is not None:
+				if random.random() <= errorp: circuit=np.matmul(circuit,get_error_matrix(self.bitnumber,errorp))
 			if self.verbose: print("Completed {}/{} Grover Iterations...".format(i+1,iterations), end="\r",flush=True)
 		if self.verbose: print("\nDone!")
 

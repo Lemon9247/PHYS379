@@ -49,7 +49,7 @@ def extend_unary(targets=None,gate=None,bits=None,verbose=None):
 	if verbose: print()
 	return temp_gate
 
-def get_error_matrix(bits):
+def get_error_matrix(bits,errorp):
 	# Define generators of U(2) and the identity matrix
 	X = cp.array([[0,1],[1,0]])
 	Y = cp.array([[0,-1j],[1j,0]])
@@ -61,7 +61,7 @@ def get_error_matrix(bits):
 	for i in range(bits):
 		if i in targets:
 			continue
-		elif random.random() <= 0.2:
+		elif random.random() <= errorp:
 			targets.append([i])
 	
 	matrices = []
@@ -120,7 +120,7 @@ class Grover:
 		if self.verbose: print("Done!")
 		return quantum_oracle
 
-	def search(self,iterations):
+	def search(self,iterations,errorp=None):
 		"""
 		Performs a Grover Search for a given number of iterations. Returns a numpy array.
 		Iterations: The number of iterations to compute (int)
@@ -131,8 +131,14 @@ class Grover:
 
 		circuit = cp.identity(2**self.bitnumber,dtype=cp.float32)
 		for i in range(iterations):
+			if errorp is not None:
+				if random.random() <= errorp: circuit=cp.matmul(circuit,get_error_matrix(self.bitnumber,errorp))
 			circuit = cp.matmul(circuit,self.quantum_oracle)
+			if errorp is not None:
+				if random.random() <= errorp: circuit=cp.matmul(circuit,get_error_matrix(self.bitnumber,errorp))
 			circuit = cp.matmul(circuit,self.diffuser)
+			if errorp is not None:
+				if random.random() <= errorp: circuit=cp.matmul(circuit,get_error_matrix(self.bitnumber,errorp))
 			
 			if self.verbose: print("Started {}/{} Grover Iterations".format(i+1,iterations),end="\r",flush=True)
 
