@@ -26,7 +26,7 @@ def extend_unary(q=None,gate=None,bits=None):
             temp_gate = np.kron(temp_gate,np.identity(2,dtype=complex)) # Insert an identity matrix to act on a different qubit
     return temp_gate
 
-def extend_binary(q=None,gate=None,bits=None):
+def extend_adjacent_binary(q=None,gate=None,bits=None):
     """
     Extend binary gate to an N qubit state
     q = indices of adjacents qubit the gate is applied to. Indexing of qubits starts from ZERO! (int)
@@ -39,41 +39,70 @@ def extend_binary(q=None,gate=None,bits=None):
         raise SyntaxError("No gate specified")
     if bits is None:
         raise SyntaxError("Number of qubits not specified")
-    #if q[1] != q[0]+1:
-        #raise SyntaxError("Gate must be applied to adjacent qubits")
+    if q[1] != q[0]+1:
+        raise SyntaxError("Gate must be applied to ajacent qubits")
 
     temp_gate = np.array(1)
     on_second_bit = False
     for i in range(bits):
-        found = False
         if on_second_bit:
             on_second_bit = False
             continue
-        for j in range(bits):#potential method for doing non-adjacent qubits. seems to work ok so far?
-            if(i,j)==q:
-                temp_gate = np.kron(temp_gate,gate) # Insert the gate into the resulting matrix that acts on desired qubit
-                on_second_bit = True
-                found = True
-                break
-        if found == False:
-                temp_gate = np.kron(temp_gate,np.identity(2,dtype=complex))# Insert an identity matrix to act on a different qubit
+        if (i,i+1) == q: # Gates are combined together via tensor/kronecker product
+            temp_gate = np.kron(temp_gate,gate) # Insert the gate into the resulting matrix that acts on desired qubit
+            on_second_bit = True
+        else:
+            temp_gate = np.kron(temp_gate,np.identity(2)) # Insert an identity matrix to act on a different qubit
     return temp_gate
 
-def measure(inputq):
+def get_swapper(array,q,bits):
+    swapper = np.identity(2**bits)
+    SWAP = np.array([[1,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,1]])
+    for i,element1 in enumerate(array):
+        if element1 != q[0]:
+            continue
+        else:
+            # loop to compare array elements
+            for j in range(0, len(array) - i - 1):
+                if array[j] == q[0]:
+                    continue
+                elif array[j] == q[1]:
+                    break
+                else:
+                    temp = array[j]
+                    array[j] = array[j+1]
+                    array[j+1] = temp
+                    extended_swap = extend_adjacent_binary(q=(j-1,j),gate=SWAP,bits=bits)
+                    swapper = np.matmul(extended_swap,swapper)
+            break
+    return swapper
+
+def extend_binary(q=None,gate=None,bits=None):
+    swapper1 = get_swapper([i for i in range(bits)],q,bits)
+    extended_gate = extend_adjacent_binary(q=(q[1]-1,q[1]),gate=gate,bits=bits)
+    swapper2 = get_swapper([i for i in range(bits)][::-1],q[::-1],bits)
+    final_gate = np.matmul(extended_gate,swapper1)
+    final_gate = np.matmul(swapper2,final_gate)
+    return final_gate
+
+def measure(inputq=None):
     """
     Measures the N qubit register, simulating quantum randomness.
-    Uses algorithm given in quantum_computer.pdf
+    Uses algorithm given in the PHYS379 Quantum Computer project notes.
+    inputq = state vector to be measured (Numpy Array)
     """
-    q=0
-    r = random.uniform(0,1)#Random number between 0 and 1
-    qbitnum = int(np.log2(len(inputq)))#Number of qubits
-    check = list(itertools.product("01",repeat = qbitnum))#Creates a list of every possible combination of 0 and 1
+    if inputq is None:
+        raise SyntaxError("Qubit state vector to measure not specified!")
+    q = 0
+    r = random.random() # Random number between 0 and 1
+    qbitnum = int(np.log2(len(inputq))) # Number of qubits
+
     for i,state_component in enumerate(inputq):
-        q += np.linalg.norm(state_component**2)#Adds value to existing q
+        q += state_component**2 # Adds value to existing q
         if q > r:
-            out = check[i] #Outputs the corresponding combination of 0 and 1 
-            break
-    return out
+            return "{0:b}".format(i) # Returns the measured bit state in its decimal representation
+    return "{0:b}".format(len(inputq)-1)    # Necessary due to floating point imprecision for large qubit counts
+
 def IQFT(inputq):
         """
         Inverse quantum fouier transform function for given N qubit state
@@ -98,6 +127,7 @@ def IQFT(inputq):
                         final = np.matmul(gate1,currq)
                         break
         return final
+
 def shors(bigN):
     """
     Performs quantum Shor's algorithm on a given number
@@ -139,35 +169,16 @@ def shors(bigN):
         frac = fractions.Fraction(phase).limit_denominator(bigN)
         s, r = frac.numerator, frac.denominator
         #if r%2 != 0:
-            #return "run again"
+         #   return "run again"
         #if a**(1/2*r)==-1%bigN:
-            #return "run again"
+         #   return "run again"
         guesses = [math.gcd(a**(r//2)-1, bigN), math.gcd(a**(r//2)+1, bigN)]
         return guesses
             
 
 def main():
-    # Define input qubit state vector and count number of qubits
-    q0 = np.array((0,0,1,0,0,0,0,0),dtype=complex)
-    q0 = q0/np.linalg.norm(q0) # Ensure state is normalised
-    N_QUBITS = int(np.log2(len(q0)))
-
-    # Define unary quantum gates
-    NOT = np.array([[0,1],[1,0]])
-    PAULI_Y = np.array([[0,-1j],[1j,0]])
-    PAULI_Z = np.array([[1,0],[0,-1]])
-    SWAP = np.array([[1,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,1]])
-
-    # Create circuit
-    #gate1 = extend_unary(q=0,gate=NOT,bits=N_QUBITS)
-    #gate2 = extend_unary(q=1,gate=NOT,bits=N_QUBITS)
-    #circuit = np.matmul(gate2,gate1)
-    #circuit = extend_binary(q=(1,2),gate=SWAP,bits=N_QUBITS)
-
-    # Send qubit through the circuit
-    #q0 = np.matmul(circuit,q0)
     while True:
-        print(shors(21))
+        print(shors(6))
     
 
 if __name__ == "__main__":
