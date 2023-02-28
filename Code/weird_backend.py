@@ -1,8 +1,5 @@
 import numpy as np
-import random
-import itertools
-import math
-import fractions
+import random, itertools
 
 def extend_unary(q=None,gate=None,bits=None):
     """
@@ -102,85 +99,3 @@ def measure(inputq=None):
         if q > r:
             return "{0:b}".format(i) # Returns the measured bit state in its decimal representation
     return "{0:b}".format(len(inputq)-1)    # Necessary due to floating point imprecision for large qubit counts
-
-def IQFT(inputq):
-        """
-        Inverse quantum fouier transform function for given N qubit state
-        Adjusted so it leaves out the last qubit in register for Shor's
-        """
-        final = 0
-        qbitnum = int(np.log2(len(inputq)))
-        SWAP = np.array([[1,0,0,0],[0,0,1,0],[0,1,0,0],[0,0,0,1]])
-        HADAMARD = np.array([[1/math.sqrt(2),1/math.sqrt(2)],[1/math.sqrt(2),-1/math.sqrt(2)]])#Define gates
-        currq = inputq
-        for i in range(qbitnum,0,-1):
-                gate1 = extend_unary(q=i-1,gate=HADAMARD,bits=qbitnum)
-                currq = np.matmul(gate1,currq)
-                for k in range(i):#Apply CROT gates to every qubit below the current one
-                        if i-1 == k:
-                                break
-                        CROT = np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,math.e**(-2*math.pi*1j/(i-k))]])
-                        gate2 = extend_binary(q=(k,i-1),gate=CROT,bits=qbitnum)
-                        currq = np.matmul(gate2,currq)
-                if i == 1:
-                        gate1 = extend_unary(q=i-1,gate=HADAMARD,bits=qbitnum)
-                        final = np.matmul(gate1,currq)
-                        break
-        return final
-
-def shors(bigN):
-    """
-    Performs quantum Shor's algorithm on a given number
-    Variable names taken from the Wikipedia page for Shor's
-    """
-    HADAMARD = np.array([[1/math.sqrt(2),1/math.sqrt(2)],[1/math.sqrt(2),-1/math.sqrt(2)]])
-    a = random.randint(2,bigN-1)
-    k = math.gcd(1,bigN)
-    initregister = []
-    phase = 0
-    for i in range(bigN**2,2*bigN**2):#Finds the right number of required qubits
-        if np.log2(i)%1 == 0:
-            qbitnum = int(np.log2(i))+1#Extra qubit for the U gates
-            break
-    print(qbitnum)
-    for i in range(2**qbitnum):#Creates the initial register. All start at 0 except the extra qubit which starts at 1
-        if i == 1:
-            initregister.append(1)
-        else:
-            initregister.append(0)
-    initregister = np.array(initregister)
-    currq = initregister
-    if k != 1:
-        return k
-    else:
-        for i in range(qbitnum-1):# Do Hadamards on the 0 qubits
-            gate1 = extend_unary(q=i,gate=HADAMARD,bits=qbitnum)
-            currq = np.matmul(gate1,currq)
-        for i in range(qbitnum-1):#Do the U gates
-            UGATE = np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,a**2**i%bigN]])
-            gate2 = extend_binary(q=(qbitnum,i),gate=UGATE, bits=qbitnum)
-            currq = np.matmul(gate2,currq)
-        result=measure(IQFT(currq))#Inverse QFT function
-        #print(result)
-        for i in range(len(result)):
-            if result[-(i+1)] == "1":
-                phase+=2**(i)
-        #print(phase)
-        phase = phase/(2**qbitnum)
-        frac = fractions.Fraction(phase).limit_denominator(bigN)
-        s, r = frac.numerator, frac.denominator
-        #if r%2 != 0:
-         #   return "run again"
-        #if a**(1/2*r)==-1%bigN:
-         #   return "run again"
-        guesses = [math.gcd(a**(r//2)-1, bigN), math.gcd(a**(r//2)+1, bigN)]
-        return guesses
-            
-
-def main():
-    while True:
-        print(shors(6))
-    
-
-if __name__ == "__main__":
-    main()

@@ -36,7 +36,9 @@ def main():
 	J = quantum.Grover(f,bits,verbose=True)
 	T=[]
 	shots = 1024
+	
 	t = J.search(iterations,errorp=0.2)
+
 	print("Starting shots!")
 	for i in range(shots):
 		T.append(quantum.measure(t))

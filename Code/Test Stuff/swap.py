@@ -68,6 +68,8 @@ def extend_binary(q=None,gate=None,bits=None):
 bits = 3
 gate = np.array([[1,0,0,0],[0,1,0,0],[0,0,0,1],[0,0,1,0]])
 print(gate)
-r=extend_binary(q=(1,2),gate=gate,bits=bits)
+r=extend_binary(q=(0,2),gate=gate,bits=bits)
+with open("bl.txt","w") as f:
+	f.write(str(r))
 print(r)
 print(np.linalg.det(r))
