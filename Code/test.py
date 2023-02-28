@@ -32,12 +32,11 @@ def main():
 	bits = int(np.ceil(np.log2(len(database))))
 	iterations = int(np.ceil(np.sqrt(len(database)/targets)))
 	print(iterations)
-	quantum.Grover(f,1)
 	start_time=time.time()
 	J = quantum.Grover(f,bits,verbose=True)
 	T=[]
 	shots = 1024
-	t = J.search(iterations,errorp=1)
+	t = J.search(iterations,errorp=0.2)
 	print("Starting shots!")
 	for i in range(shots):
 		T.append(quantum.measure(t))

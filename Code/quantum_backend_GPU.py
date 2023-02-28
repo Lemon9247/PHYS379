@@ -50,11 +50,13 @@ def extend_unary(targets=None,gate=None,bits=None,verbose=None):
 	return temp_gate
 
 def get_error_matrix(bits,errorp):
+	error_size = 0.01
 	# Define generators of U(2) and the identity matrix
 	X = cp.array([[0,1],[1,0]])
 	Y = cp.array([[0,-1j],[1j,0]])
 	Z = cp.array([[1,0],[0,-1]])
 	I = cp.array([[1,0],[0,1]])
+
 
 	# Create a list of targets to apply random error "gates" to
 	targets = [[random.randint(0,bits-1)]]
@@ -70,7 +72,7 @@ def get_error_matrix(bits,errorp):
 		for i,component in enumerate(n_vec):
 			n_vec[i] = component*((-1)**random.randint(0,1))	# Flip sign of components at random
 		n_vec = n_vec/cp.linalg.norm(n_vec)		# Ensure the axis vector is normalised
-		angle = (np.pi/8)*random.random()	# Pick a random angle between 0 and pi/8
+		angle = (4*np.pi*error_size)*random.random()	# Pick a random angle between 0 and pi/8
 		matrix = cp.cos(angle/2)*I-1j*np.sin(angle/2)*(n_vec[0]*X+n_vec[1]*Y+n_vec[2]*Z)	# Construct the gate
 		extended_matrix = extend_unary(targets=target,gate=matrix,bits=bits)	# Extend the gate to the multi-qubit setup
 		matrices.append(extended_matrix)
