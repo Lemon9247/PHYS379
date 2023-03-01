@@ -1,6 +1,5 @@
-from weird_backend import *
 import numpy as np
-import random, fractions
+import random, fractions, itertools
 
 def extend_unary(targets=None,gate=None,bits=None,verbose=None):
     """
@@ -54,10 +53,9 @@ class shor:
         self.verbose = verbose if verbose != None else False
         
         # For an n-bit integer, there should be 2n bits in the main register and n in the ancillary
-        self.bits = int(3*np.ceil(np.log2(bigN)))
-        #print(self.bits)
-        self.ancillary_bitnumber = self.bits//3
-        self.main_bitnumber = self.bits-self.ancillary_bitnumber
+        self.ancillary_bitnumber = int(np.ceil(np.log2(bigN)))
+        self.main_bitnumber = 3
+        self.bits = self.main_bitnumber+self.ancillary_bitnumber
         
         self.IQFT = self.get_IQFT_matrix()
 
@@ -72,16 +70,18 @@ class shor:
         IQFT_matrix *= 1/(np.sqrt(N))
         for i in range(self.ancillary_bitnumber):
             IQFT_matrix = np.kron(IQFT_matrix,np.identity(2))
-        #print(IQFT_matrix.shape)
-        #print(IQFT_matrix)
-        #print(np.linalg.det(IQFT_matrix))
         return IQFT_matrix
 
     def construct_CU_matrix(self,a,control_bit):
-        if control_bit == 0:
+        """
+        CU matrix is constructed according to algorithm outlined in undergrad
+        quantum computing projects paper
+        """
+        index = self.main_bitnumber-(control_bit+1) # Reverse numerical ordering of main register
+        if index == 0:
             A = a%self.N
         else:
-            A = (a**(2*control_bit-1))%self.N
+            A = (a**(2*index-1))%self.N
 
         CU = np.zeros((2**self.bits,2**self.bits))
         get_bin = lambda x, n: format(x, 'b').zfill(n)
@@ -122,8 +122,6 @@ class shor:
         q_vec = np.matmul(circuit,q_vec)
 
         collapsed = measure(q_vec)
-        collapsed_statevec = np.array(collapsed)
-
         states = []
         for i in collapsed:
             if i == "0":
@@ -131,7 +129,6 @@ class shor:
             else:
                 states.append(np.array([0,1]))
         collapsed_statevec = states[0].copy()
-        #print(states)
         for i,entry in enumerate(states):
             if i == 0:
                 continue
@@ -148,8 +145,18 @@ class shor:
         phase = int_result/(2**self.main_bitnumber)
         print(int_result,phase)
         frac = fractions.Fraction(phase).limit_denominator(self.main_bitnumber)
-        s, r = frac.numerator, frac.denominator
-        guesses = [np.gcd(a**(r//2)-1, self.N), np.gcd(a**(r//2)+1, self.N)]
+        trial_period = int(frac.denominator)
+        i = 1
+        while True:
+            p = trial_period*i
+            if a**p%self.N == 1:
+                break
+            else:
+                i+=1
+            if i >= 10:
+                print("Failed!")
+                raise
+        guesses = [np.gcd(a**(p//2)-1, self.N), np.gcd(a**(p//2)+1, self.N)]
         return guesses
 
 def main():
