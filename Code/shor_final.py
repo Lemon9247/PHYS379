@@ -120,7 +120,6 @@ class shor:
 
         # For an n-bit integer, there should be n ancillary qubits
         # The number of qubits in the main register can be varied, but it is best to have 2n
-
         self.main_bitnumber = bits if bits != None else 2*int(np.ceil(np.log2(self.N)))
         self.ancillary_bitnumber = int(np.ceil(np.log2(self.N)))
         self.bits = self.main_bitnumber+self.ancillary_bitnumber
@@ -262,7 +261,6 @@ class shor:
                         trial_period = s
                         break
             i=1
-            retrying = False
             while True:
                 period = trial_period*i
                 if self.a**period%self.N == 1:
