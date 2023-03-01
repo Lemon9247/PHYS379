@@ -107,7 +107,7 @@ def measure(inputq):
 
 class shor:
 
-    def __init__(self,N,a=None,bits=None):
+    def __init__(self,N,a=None,bits=None,verbose=None):
         """
         Class to handle shor's algorithm
         N = target number to factorise
@@ -115,7 +115,8 @@ class shor:
         bits = number of qubits in the main register. If not specified, there are 2n qubits for an n-bit value of N
         """
         self.N = N
-        self.a = a if a!= None else random.randint(1,N)      
+        self.a = a if a!= None else random.randint(1,N)
+        self.verbose = verbose if verbose != None else False   
 
         # For an n-bit integer, there should be n ancillary qubits
         # The number of qubits in the main register can be varied, but it is best to have 2n
@@ -123,6 +124,7 @@ class shor:
         self.main_bitnumber = bits if bits != None else 2*int(np.ceil(np.log2(self.N)))
         self.ancillary_bitnumber = int(np.ceil(np.log2(self.N)))
         self.bits = self.main_bitnumber+self.ancillary_bitnumber
+        if verbose: print("Ancillary Bits: {}, Total Bits: {}".format(self.ancillary_bitnumber,self.bits))
         # Construct IQFT matrix
         self.HADAMARD = 1/(np.sqrt(2))*np.array([[1,1],[1,-1]],dtype=np.float32)
         self.IQFT = self.get_IQFT_matrix_v2()
@@ -132,16 +134,18 @@ class shor:
         Inverse quantum fouier transform function for given N qubit state.
         Adjusted so it does not act on the ancillary qubits, only the main register
         """
+        if self.verbose: print("Computing IQFT matrix for {} bits in working register".format(self.main_bitnumber))
         circuit  = np.identity(2**self.main_bitnumber)
         for i in reversed(range(self.main_bitnumber)):
             gate1 = extend_unary(targets=[i-1],gate=self.HADAMARD,bits=self.main_bitnumber)
             circuit = np.matmul(gate1,circuit)
-            for k in range(i):#Apply CROT gates to every qubit below the current one
+            for k in range(i): #Apply CROT gates to every qubit below the current one
                     if i-1 == k:
                         break
-                    CROT = np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,np.e**(-2*np.pi*1j/(i-k))]])
+                    CROT = np.array([[1,0,0,0],[0,np.e**(-2*np.pi*1j/(i-k)),0,0],[0,0,1,0],[0,0,0,1]])
                     gate2 = extend_binary(q=(k,i-1),gate=CROT,bits=self.main_bitnumber)
                     circuit = np.matmul(gate2,circuit)
+        if self.verbose: print("Applying tensor products to IQFT matrix for ancillary register...")
         for i in range(self.ancillary_bitnumber):
             circuit = np.kron(circuit,np.identity(2))
         return circuit
@@ -152,8 +156,8 @@ class shor:
         Uses mathematical definition of IQFT instead of building out of unary & binary gates
         By default this method remains unused!
         """
+        if self.verbose: print("Computing IQFT matrix for {} bits in working register".format(self.main_bitnumber))
         N = 2**self.main_bitnumber
-        #print(N)
         omega = np.exp(-2*np.pi*1j/N)
         IQFT_matrix = np.array([[0 for j in range(N)] for i in range(N)],dtype=complex)
         for i in range(N):
@@ -162,6 +166,7 @@ class shor:
         IQFT_matrix *= 1/(np.sqrt(N))
         for i in range(self.ancillary_bitnumber):
             IQFT_matrix = np.kron(IQFT_matrix,np.identity(2))
+        if self.verbose: print("Done!")
         return IQFT_matrix
 
     def construct_CU_matrix(self,control_bit):
@@ -174,7 +179,6 @@ class shor:
             A = self.a%self.N
         else:
             A = (self.a**(2*index-1))%self.N
-
         CU = np.zeros((2**self.bits,2**self.bits))
         get_bin = lambda x, n: format(x, 'b').zfill(n)
         for column_number in range(2**self.bits):
@@ -202,13 +206,15 @@ class shor:
         """
         k = np.gcd(self.a,self.N)
         if k != 1:  # If a is already a non-trivial factor of N we are done
+            if self.verbose: print("Random value a was already a non-trivial factor!")
             return ([self.N//k,k],True)   # Return True in second argument to flag algorithm was skipped
 
         circuit = extend_unary(targets=[i for i in range(self.main_bitnumber)],gate=self.HADAMARD,bits=self.bits)
         for i in reversed(range(self.main_bitnumber)):#Do the U gates
             UGATE = self.construct_CU_matrix(i)
+            if self.verbose: print("Computed {}/{} controlled U gates".format(self.main_bitnumber-i,self.main_bitnumber),end="\r",flush=True)
             circuit = np.matmul(UGATE,circuit)
-
+        if self.verbose: print("\nMeasuring ancillary qubits...")
         q_vec = np.array([0 for i in range(2**self.bits)])
         q_vec[1] = 1
         q_vec = np.matmul(circuit,q_vec)
@@ -226,12 +232,14 @@ class shor:
             else:
                 collapsed_statevec = np.kron(collapsed_statevec,entry)
         collapsed_statevec = collapsed_statevec/np.linalg.norm(collapsed_statevec)
+        if self.verbose: print("Applying IQFT to working register")
         final_state = np.matmul(self.IQFT,collapsed_statevec)   # Send main register through IQFT
         result = measure(final_state)
         x_register_result = result[:self.main_bitnumber]
-        print(x_register_result)
+        if self.verbose: print("Measured state:",x_register_result)
         int_result = int("".join(x_register_result[::-1]),2)
         phase = int_result/(2**self.main_bitnumber)
+        if self.verbose: print("Done!")
         return (phase,False)    # Return False in second argument to flag algorithm was run
 
     def get_period(self,phase):
@@ -240,7 +248,7 @@ class shor:
         """
         phase_frac = contfraction(phase)
         max_trials = 10
-
+        if self.verbose: print("Finding period using output of shor's algorithm")
         searching = True
         while searching:
             expansion = phase_frac.expand(max_trials)
@@ -264,7 +272,9 @@ class shor:
                     i+=1
                 if i > max_trials:
                     max_trials += 1
+                    if self.verbose: print("Chosen search size was too small, restarting search with larger radius")
                     break
+        if self.verbose: print("Done!")
         return period
 
     def get_factors(self,p):
@@ -300,17 +310,18 @@ class contfraction:
 
 def main():
     while True:
-        target = 21
-        main_register_bitnumber = 7
-        J=shor(target,bits=main_register_bitnumber)
+        target = 39
+        main_register_bitnumber = 5
+        #a=7
+        J=shor(target,bits=main_register_bitnumber,verbose=True)
         output = J.run_algorithm()
         if output[1]:   # Check if the algorithm was skipped
-            print(output[0])
+            print(output[0],"\n")
         else:
             phase = output[0]
             print(phase)
             p = J.get_period(phase)
-            print(phase,J.get_factors(p))
+            print(phase,J.get_factors(p),"\n")
             time.sleep(0.5)
     
 if __name__ == "__main__":
