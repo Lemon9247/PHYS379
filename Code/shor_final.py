@@ -178,7 +178,7 @@ class shor:
         if index == 0:
             A = self.a%self.N
         else:
-            A = (self.a**(2*index-1))%self.N
+            A = (self.a**(2**index))%self.N
         CU = np.zeros((2**self.bits,2**self.bits))
         get_bin = lambda x, n: format(x, 'b').zfill(n)
         for column_number in range(2**self.bits):
