@@ -1,27 +1,36 @@
 import numpy as np
+import cupy as cp
 import random, itertools
 
-def extend_unary(q=None,gate=None,bits=None):
+def extend_unary(targets=None,gate=None,bits=None,verbose=None):
     """
-    Extend unary gate to an N qubit state
-    q = index of qubit the gate is applied to. Indexing of qubits starts from ZERO! (int)
+    Extend unary gate to an N qubit state. If no target is supplied then the gate is applied to all qubits.
+    targets = indices of qubits the gate is applied to. Indexing of qubits starts from ZERO! (int list)
     gate = unary gate to be extended to a multi-qubit state. (2D complex numpy array, size 2*2)
     bits = number of qubits (int)
     """
-    if q is None:
-        raise SyntaxError("Missing qubit index")
     if gate is None:
         raise SyntaxError("No gate specified")
     if bits is None:
         raise SyntaxError("Number of qubits not specified")
+    if verbose is None:
+        verbose = False
 
-    temp_gate = np.array(1)
-    for i in range(bits):
-        if i == q: # Gates are combined together via tensor/kronecker product
-            temp_gate = np.kron(temp_gate,gate) # Insert the gate into the resulting matrix that acts on desired qubit
-        else:
-            temp_gate = np.kron(temp_gate,np.identity(2,dtype=complex)) # Insert an identity matrix to act on a different qubit
+    temp_gate = np.array(1,dtype=np.float32)
+    if targets is None:
+        for i in range(bits):
+            temp_gate = np.kron(temp_gate,gate)
+            if verbose: print("Computed {}/{} tensor products".format(i+1,bits),end="\r",flush=True)
+    else:
+        for i in range(bits):
+            if i in targets:
+                temp_gate = np.kron(temp_gate,gate)
+            else: # Insert an identity matrix to act on a different qubit
+                temp_gate = np.kron(temp_gate,np.identity(2,dtype=np.float32))
+            if verbose: print("Computed {}/{} tensor products".format(i+1,bits),end="\r",flush=True)
+    if verbose: print()
     return temp_gate
+
 
 def extend_adjacent_binary(q=None,gate=None,bits=None):
     """
@@ -82,20 +91,36 @@ def extend_binary(q=None,gate=None,bits=None):
     final_gate = np.matmul(swapper2,final_gate)
     return final_gate
 
-def measure(inputq=None):
+# def measure(inputq=None):
+#     """
+#     Measures the N qubit register, simulating quantum randomness.
+#     Uses algorithm given in the PHYS379 Quantum Computer project notes.
+#     inputq = state vector to be measured (Numpy Array)
+#     """
+#     if inputq is None:
+#         raise SyntaxError("Qubit state vector to measure not specified!")
+#     q = 0
+#     r = random.random() # Random number between 0 and 1
+#     qbitnum = int(np.log2(len(inputq))) # Number of qubits
+
+#     for i,state_component in enumerate(inputq):
+#         q += state_component**2 # Adds value to existing q
+#         if q > r:
+#             return "{0:b}".format(i) # Returns the measured bit state in its decimal representation
+#     return "{0:b}".format(len(inputq)-1)    # Necessary due to floating point imprecision for large qubit counts
+
+def measure(inputq):
     """
     Measures the N qubit register, simulating quantum randomness.
-    Uses algorithm given in the PHYS379 Quantum Computer project notes.
-    inputq = state vector to be measured (Numpy Array)
+    Uses algorithm given in quantum_computer.pdf
     """
-    if inputq is None:
-        raise SyntaxError("Qubit state vector to measure not specified!")
-    q = 0
-    r = random.random() # Random number between 0 and 1
-    qbitnum = int(np.log2(len(inputq))) # Number of qubits
-
+    q=0
+    r = random.uniform(0,1)#Random number between 0 and 1
+    qbitnum = int(np.log2(len(inputq)))#Number of qubits
+    check = list(itertools.product("01",repeat = qbitnum))#Creates a list of every possible combination of 0 and 1
     for i,state_component in enumerate(inputq):
-        q += state_component**2 # Adds value to existing q
+        q += np.linalg.norm(state_component**2)#Adds value to existing q
         if q > r:
-            return "{0:b}".format(i) # Returns the measured bit state in its decimal representation
-    return "{0:b}".format(len(inputq)-1)    # Necessary due to floating point imprecision for large qubit counts
+            out = check[i] #Outputs the corresponding combination of 0 and 1 
+            break
+    return out
