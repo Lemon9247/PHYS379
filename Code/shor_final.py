@@ -33,7 +33,7 @@ def extend_unary(targets=None,gate=None,bits=None,verbose=None):
 def extend_adjacent_binary(q=None,gate=None,bits=None):
     """
     Extend binary gate to an N qubit state
-    q = indices of adjacents qubit the gate is applied to. Indexing of qubits starts from ZERO! (int)
+    q = indices of adjacent qubits the gate is applied to. Indexing of qubits starts from ZERO! (int)
     gate = binary gate to be extended to a multi-qubit state. (2D complex numpy array, size 4*4)
     bits = number of qubits (int)
     """
@@ -308,8 +308,8 @@ class contfraction:
 
 def main():
     while True:
-        target = 39
-        main_register_bitnumber = 5
+        target = 45
+        main_register_bitnumber = 6
         #a=7
         J=shor(target,bits=main_register_bitnumber,verbose=True)
         output = J.run_algorithm()
