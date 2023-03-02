@@ -13,9 +13,9 @@ def get_private_key(factors,public_key):
 def factorise_modulus(public_key):
 	e,n = public_key
 	main_register_bitnumber = 5
-	J=shor.shor(n,bits=main_register_bitnumber,verbose=True)
 	while True:
 		print("Working...")
+		J=shor.shor(n,bits=main_register_bitnumber,verbose=True)
 		output = J.run_algorithm()
 		if output[1]:   # Check if the algorithm was skipped
 			factors=output[0]
