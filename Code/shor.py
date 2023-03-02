@@ -247,7 +247,7 @@ class shor:
         """
         phase_frac = contfraction(phase)
         max_trials = 10
-        if self.verbose: print("Finding period using output of shor's algorithm")
+        if self.verbose: print("Finding period using output of Shor's algorithm")
         searching = True
         while searching:
             expansion = phase_frac.expand(max_trials)
@@ -269,13 +269,14 @@ class shor:
                 else:
                     i+=1
                 if i > max_trials:
-                    max_trials += 1
+                    max_trials += 10
                     if self.verbose: print("Chosen search size was too small, restarting search with larger radius")
                     break
         if self.verbose: print("Done!")
         return period
 
     def get_factors(self,p):
+        p=int(np.ceil(p))
         guesses = [np.gcd(self.a**(p//2)-1, self.N), np.gcd(self.a**(p//2)+1, self.N)]
         return guesses
 
