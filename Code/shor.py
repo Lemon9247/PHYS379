@@ -115,7 +115,7 @@ class shor:
         bits = number of qubits in the main register. If not specified, there are 2n qubits for an n-bit value of N
         """
         self.N = N
-        self.a = a if a!= None else random.randint(1,N)
+        self.a = a if a!= None else random.randint(1,N-1)
         self.verbose = verbose if verbose != None else False   
 
         # For an n-bit integer, there should be n ancillary qubits
@@ -309,8 +309,8 @@ class contfraction:
 
 def main():
     while True:
-        target = 45
-        main_register_bitnumber = 6
+        target = 15
+        main_register_bitnumber = 1
         #a=7
         J=shor(target,bits=main_register_bitnumber,verbose=True)
         output = J.run_algorithm()

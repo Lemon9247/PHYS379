@@ -57,7 +57,7 @@ def main():
 	private = (47,143)
 	keys = None # Can alternatively set this to keys=(public,private) to test against a constant key
 	shots = 100
-	maximum_bitnumber = 5 # 3-bit RSA requires an 8 qubit ancillary register, so limit this to 5 at max
+	maximum_bitnumber = 5 # 8-bit RSA requires an 8 qubit ancillary register, so limit this to 5 at max
 	bit_sizes = [i+1 for i in range(maximum_bitnumber)]
 	results = [[] for i in range(maximum_bitnumber)]
 	for bitnumber in bit_sizes:
@@ -101,4 +101,4 @@ for different sizes of the working register size for {} shots""".format(shots)
 if __name__=="__main__":
 	main()
 	#while True:
-		#crack_key(verbose=True)
+	#	crack_key(verbose=True)
