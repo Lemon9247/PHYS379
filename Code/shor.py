@@ -105,6 +105,39 @@ def measure(inputq):
             break
     return out
 
+def get_error_matrix(bits,errorp):
+    error_size = 0.1
+    # Define generators of U(2) and the identity matrix
+    X = np.array([[0,1],[1,0]])
+    Y = np.array([[0,-1j],[1j,0]])
+    Z = np.array([[1,0],[0,-1]])
+    I = np.array([[1,0],[0,1]])
+
+    # Create a list of targets to apply random error "gates" to
+    targets = [[random.randint(0,bits-1)]]
+    for i in range(bits):
+        if i in targets:
+            continue
+        elif random.random() <= errorp:
+            targets.append([i])
+    
+    matrices = []
+    for target in targets:
+        n_vec = np.random.rand(3)   # Create randomised axis vector for the gate
+        for i,component in enumerate(n_vec):
+            n_vec[i] = component*((-1)**random.randint(0,1))    # Flip sign of components at random
+        n_vec = n_vec/np.linalg.norm(n_vec)     # Ensure the axis vector is normalised
+        angle = (4*np.pi*error_size)*random.random()    # Pick a random angle between 0 and pi/8
+        matrix = np.cos(angle/2)*I-1j*np.sin(angle/2)*(n_vec[0]*X+n_vec[1]*Y+n_vec[2]*Z)    # Construct the gate
+        extended_matrix = extend_unary(targets=target,gate=matrix,bits=bits)    # Extend the gate to the multi-qubit setup
+        matrices.append(extended_matrix)
+
+    # Multiply all the error "gates" together to construct the overall error gate
+    error_matrix = np.identity(2**bits,dtype=np.float32)
+    for matrix in matrices:
+        error_matrix = np.matmul(error_matrix,matrix)
+    return error_matrix
+
 class shor:
 
     def __init__(self,N,a=None,bits=None,verbose=None):
@@ -199,7 +232,7 @@ class shor:
             CU[j][column_number] = 1
         return CU
 
-    def run_algorithm(self):
+    def run_algorithm(self,errorp=None):
         """
         Calculates the output x/2^L ("phase") of Shor's algorithm for a given value of a
         """
@@ -212,6 +245,8 @@ class shor:
         for i in reversed(range(self.main_bitnumber)):#Do the U gates
             UGATE = self.construct_CU_matrix(i)
             if self.verbose: print("Computed {}/{} controlled U gates".format(self.main_bitnumber-i,self.main_bitnumber),end="\r",flush=True)
+            if errorp is not None:
+                if random.random() <= errorp: circuit=np.matmul(circuit,get_error_matrix(self.bits,errorp))
             circuit = np.matmul(UGATE,circuit)
         if self.verbose: print("\nMeasuring ancillary qubits...")
         q_vec = np.array([0 for i in range(2**self.bits)])
@@ -232,7 +267,13 @@ class shor:
                 collapsed_statevec = np.kron(collapsed_statevec,entry)
         collapsed_statevec = collapsed_statevec/np.linalg.norm(collapsed_statevec)
         if self.verbose: print("Applying IQFT to working register")
-        final_state = np.matmul(self.IQFT,collapsed_statevec)   # Send main register through IQFT
+        new_circuit = np.identity(2**self.bits)
+        if errorp is not None:
+                if random.random() <= errorp: new_circuit=np.matmul(get_error_matrix(self.bits,errorp),new_circuit)
+        new_circuit = np.matmul(self.IQFT,new_circuit)
+        if errorp is not None:
+                if random.random() <= errorp: new_circuit=np.matmul(get_error_matrix(self.bits,errorp),new_circuit)
+        final_state = np.matmul(new_circuit,collapsed_statevec)   # Send main register through IQFT
         result = measure(final_state)
         x_register_result = result[:self.main_bitnumber]
         if self.verbose: print("Measured state:",x_register_result)
@@ -310,10 +351,10 @@ class contfraction:
 def main():
     while True:
         target = 15
-        main_register_bitnumber = 1
+        main_register_bitnumber = 3
         #a=7
         J=shor(target,bits=main_register_bitnumber,verbose=True)
-        output = J.run_algorithm()
+        output = J.run_algorithm(errorp=1)
         if output[1]:   # Check if the algorithm was skipped
             print(output[0],"\n")
         else:
