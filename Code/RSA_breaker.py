@@ -2,6 +2,22 @@ import shor, RSA
 import math,time
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+import pickle
+
+# write list to binary file
+def write(list_name,file_name):
+    # store list in binary file so 'wb' mode
+    with open(file_name, 'wb') as fp:
+        pickle.dump(list_name, fp)
+        print('Done writing list into a binary file')
+
+# Read list to memory
+def read(file_name):
+    # for reading also binary mode is important
+    with open(file_name, 'rb') as fp:
+        n_list = pickle.load(fp)
+        return n_list
 
 def get_private_key(factors,public_key):
 	e,n=public_key
@@ -96,9 +112,81 @@ for different sizes of the working register size for {} shots""".format(shots)
 # 		)	# Use this plot title if working with a fixed public, private key pairing!
 	plt.show()
 
+def test_errorp():
+	public = (23,143)
+	private = (47,143)
+	keys = None # Can alternatively set this to keys=(public,private) to test against a constant key
+	y = [[] for i in range(3)]
+	errors = [[] for i in range(3)]
+	error_size_list = [0.1,0.2,0.3]
+	for num,error_size in enumerate(error_size_list):
+		print("------------------------------------------")
+		print("Error Size = {}".format(error_size))
+		bitnumber = 3
+		shots = 1
+		trials = 1
+		errorp_step = 0.5
+		errorp_list = np.array([i*errorp_step for i in range(int(1/errorp_step)+1)])
+		results = [[] for i in range(int(1/errorp_step)+1)]
+		for errorp in errorp_list:
+			print("Testing errorp={}".format(errorp))
+			for j in range(trials):
+				temp = []
+				for i in range(shots):
+					try:
+						result = crack_key(keys=keys,bits=bitnumber)
+						if result:
+							temp.append(1)
+						else:
+							temp.append(0)
+					except:
+						temp.append(0)
+					print("Completed {}/{} shots, {}/{} trials".format(i+1,shots,j,trials),end="\r",flush=True)
+				success = np.mean(temp)
+				results[int(errorp/errorp_step)].append(success)
+			print("Completed {}/{} shots, {}/{} trials".format(i+1,shots,trials,trials),end="\r",flush=True)
+			print("\n")
+		for result_list in results:
+			y[num].append(np.mean(result_list))
+			errors[num].append(np.std(result_list)/np.sqrt(trials))
 
+	folder = str(int(np.floor(time.time())))+"/"
+	os.mkdir(folder)
+	write(y,folder+"y")
+	write(errors,folder+"errors")
+	
+
+def plot_data(y_file,err_file):
+	y = read(y_file)
+	errors  = read(err_file)
+	errorp_step = 0.5
+	error_size_list = [0.1,0.2,0.3]
+	errorp_list = np.array([i*errorp_step for i in range(int(1/errorp_step)+1)])
+	b = [-0.05,0,0.05]
+	bitnumber = 3
+	shots = 1
+	trials = 1
+	shapes = ["o","v","*"]
+	#print(results)
+	fig,ax=plt.subplots()
+	for i in range(3):
+		ax.errorbar(errorp_list+b[i], y[i], yerr=errors[i], fmt=shapes[i], ecolor="gray", elinewidth=0.75, capsize=3, label=str(error_size_list[i]))
+	plt.xticks(errorp_list)
+	plt.xlabel("Probability of error on a qubit")
+	plt.ylabel("Success Probability")
+	plt.legend(title="Error Size")
+	plt.title("""Measured probability of successfully
+breaking 3-bit RSA encryption for different values
+of the error probability,
+measured over {} trials of {} shots.
+Working Register = {} Qubits""".format(trials,shots,bitnumber)
+)
+	plt.tight_layout()
+	plt.show()
 
 if __name__=="__main__":
-	main()
+	#main()
+	test_errorp()
+	#plot_data("1678375419.0/y","1678375419.0/errors")
 	#while True:
 	#	crack_key(verbose=True)

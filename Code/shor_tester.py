@@ -56,12 +56,12 @@ def test_errorp():
 	for num,error_size in enumerate(error_size_list):
 		print("------------------------------------------")
 		print("Error Size = {}".format(error_size))
-		target = 33
+		target = 15
 		bitnumber = 3
 		a = 7
 		shots = 100
-		trials = 100
-		errorp_step = 0.1
+		trials = 20
+		errorp_step = 0.2
 		errorp_list = np.array([i*errorp_step for i in range(int(1/errorp_step)+1)])
 		results = [[] for i in range(int(1/errorp_step)+1)]
 		for errorp in errorp_list:
@@ -74,7 +74,7 @@ def test_errorp():
 						phase = J.run_algorithm(errorp=errorp,error_size=error_size)[0]
 						p = J.get_period(phase)
 						result = J.get_factors(p)
-						if result == [3,11] or result == [11,3]:
+						if result == [3,5] or result == [5,3]:
 							temp.append(1)
 						else:
 							temp.append(0)
