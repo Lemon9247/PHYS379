@@ -105,8 +105,8 @@ def measure(inputq):
             break
     return out
 
-def get_error_matrix(bits,errorp):
-    error_size = 0.1
+def get_error_matrix(bits,errorp,error_size=None):
+    error_size = error_size if error_size != None else 0.1
     # Define generators of U(2) and the identity matrix
     X = np.array([[0,1],[1,0]])
     Y = np.array([[0,-1j],[1j,0]])
@@ -232,7 +232,7 @@ class shor:
             CU[j][column_number] = 1
         return CU
 
-    def run_algorithm(self,errorp=None):
+    def run_algorithm(self,errorp=None,error_size=None):
         """
         Calculates the output x/2^L ("phase") of Shor's algorithm for a given value of a
         """
@@ -246,7 +246,7 @@ class shor:
             UGATE = self.construct_CU_matrix(i)
             if self.verbose: print("Computed {}/{} controlled U gates".format(self.main_bitnumber-i,self.main_bitnumber),end="\r",flush=True)
             if errorp is not None:
-                if random.random() <= errorp: circuit=np.matmul(circuit,get_error_matrix(self.bits,errorp))
+                if random.random() <= errorp: circuit=np.matmul(circuit,get_error_matrix(self.bits,errorp,error_size=error_size))
             circuit = np.matmul(UGATE,circuit)
         if self.verbose: print("\nMeasuring ancillary qubits...")
         q_vec = np.array([0 for i in range(2**self.bits)])
@@ -269,10 +269,10 @@ class shor:
         if self.verbose: print("Applying IQFT to working register")
         new_circuit = np.identity(2**self.bits)
         if errorp is not None:
-                if random.random() <= errorp: new_circuit=np.matmul(get_error_matrix(self.bits,errorp),new_circuit)
+                if random.random() <= errorp: new_circuit=np.matmul(get_error_matrix(self.bits,errorp,error_size=error_size),new_circuit)
         new_circuit = np.matmul(self.IQFT,new_circuit)
         if errorp is not None:
-                if random.random() <= errorp: new_circuit=np.matmul(get_error_matrix(self.bits,errorp),new_circuit)
+                if random.random() <= errorp: new_circuit=np.matmul(get_error_matrix(self.bits,errorp,error_size=error_size),new_circuit)
         final_state = np.matmul(new_circuit,collapsed_statevec)   # Send main register through IQFT
         result = measure(final_state)
         x_register_result = result[:self.main_bitnumber]
