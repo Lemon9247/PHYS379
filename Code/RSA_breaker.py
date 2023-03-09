@@ -122,10 +122,12 @@ def test_errorp():
 	for num,error_size in enumerate(error_size_list):
 		print("------------------------------------------")
 		print("Error Size = {}".format(error_size))
-		bitnumber = 3
-		shots = 1
-		trials = 1
+
+		bitnumber = 4
+		shots = 100
+		trials = 5
 		errorp_step = 0.5
+
 		errorp_list = np.array([i*errorp_step for i in range(int(1/errorp_step)+1)])
 		results = [[] for i in range(int(1/errorp_step)+1)]
 		for errorp in errorp_list:
@@ -159,14 +161,18 @@ def test_errorp():
 def plot_data(y_file,err_file):
 	y = read(y_file)
 	errors  = read(err_file)
-	errorp_step = 0.5
 	error_size_list = [0.1,0.2,0.3]
-	errorp_list = np.array([i*errorp_step for i in range(int(1/errorp_step)+1)])
-	b = [-0.05,0,0.05]
+	
+	
 	bitnumber = 3
-	shots = 1
-	trials = 1
+	shots = 100
+	trials = 5
+	errorp_step = 0.5
+
+	errorp_list = np.array([i*errorp_step for i in range(int(1/errorp_step)+1)])
+	
 	shapes = ["o","v","*"]
+	b = [-0.075,0,0.075]
 	#print(results)
 	fig,ax=plt.subplots()
 	for i in range(3):
@@ -187,6 +193,6 @@ Working Register = {} Qubits""".format(trials,shots,bitnumber)
 if __name__=="__main__":
 	#main()
 	test_errorp()
-	#plot_data("1678375419.0/y","1678375419.0/errors")
+	#plot_data("1678388528/y","1678388528/errors")
 	#while True:
 	#	crack_key(verbose=True)
