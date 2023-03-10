@@ -57,7 +57,7 @@ def test_errorp():
 		print("------------------------------------------")
 		print("Error Size = {}".format(error_size))
 		target = 15
-		bitnumber = 3
+		bitnumber = 4
 		a = 7
 		shots = 100
 		trials = 20
@@ -110,7 +110,7 @@ Working Register = {} Qubits""".format(target,trials,shots,bitnumber)
 
 def test_shor_outputs():
 	target = 15
-	main_register_bitnumber = 3
+	main_register_bitnumber = 4
 	a = 7
 	shots = 500
 	trials = 30

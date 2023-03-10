@@ -164,7 +164,7 @@ def plot_data(y_file,err_file):
 	error_size_list = [0.1,0.2,0.3]
 	
 	
-	bitnumber = 3
+	bitnumber = 4
 	shots = 100
 	trials = 5
 	errorp_step = 0.5
@@ -182,7 +182,7 @@ def plot_data(y_file,err_file):
 	plt.ylabel("Success Probability")
 	plt.legend(title="Error Size")
 	plt.title("""Measured probability of successfully
-breaking 3-bit RSA encryption for different values
+breaking 8-bit RSA encryption for different values
 of the error probability,
 measured over {} trials of {} shots.
 Working Register = {} Qubits""".format(trials,shots,bitnumber)
@@ -192,7 +192,7 @@ Working Register = {} Qubits""".format(trials,shots,bitnumber)
 
 if __name__=="__main__":
 	#main()
-	test_errorp()
-	#plot_data("1678388528/y","1678388528/errors")
+	#test_errorp()
+	plot_data("1678447330/y","1678447330/errors")
 	#while True:
 	#	crack_key(verbose=True)
