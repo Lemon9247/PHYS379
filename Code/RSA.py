@@ -71,6 +71,7 @@ def main():
     encrypted_msg = encrypt(msg, public)
     print("Encrypted message: ")
     print(encrypted_msg)
+    print("".join([chr(c) for c in encrypted_msg]))
     print("Decrypted message: ")
     print(decrypt(encrypted_msg, private))
 
