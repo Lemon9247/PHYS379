@@ -1,0 +1,1162 @@
+This is LuaHBTeX, Version 1.14.0 (MiKTeX 21.10) (format=lualatex 2023.1.18)  18 APR 2023 18:21
+ restricted system commands enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2021-06-01> patch level 1
+Lua module: luaotfload 2021-05-21 3.18 Lua based OpenType font support
+Lua module: lualibs 2021-05-20 2.74 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2021-05-20 2.74 ConTeXt Lua libraries -- extended c
+ollection.
+luaotfload | conf : Root cache directory is "C:/Users/willow/AppData/Local/MiKTe
+X/luatex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2021-05-20.lua" from kpse-res
+olved path "C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/luatex/luaotfload/
+fontloader-2021-05-20.lua".
+Lua-only attribute luaotfload@noligature = 1
+Lua-only attribute luaotfload@syllabe = 2
+luaotfload | init : Context OpenType loader version 3.116
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' at position 1 in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 3
+luaotfload | conf : Root cache directory is "C:/Users/willow/AppData/Local/MiKTe
+X/luatex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' at position 1 in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' at position 1 in `find_truetype_file'.
+Inserting `luaotfload.harf.finalize_vlist' at position 1 in `post_linebreak_filt
+er'.
+Inserting `luaotfload.harf.finalize_hlist' at position 2 in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' at position 1 in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' at position 1 in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' at position 1 in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 4
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
+font'.
+Inserting `luaotfload.aux.set_font_index' at position 2 in `luaotfload.patch_fon
+t'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 3 in `luaotfload.patch
+_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
+t_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 4 in `luaotfload.patch_font
+'.
+Inserting `luaotfload.aux.set_xheight' at position 5 in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' at position 6 in `luaotfload.patch_font'
+. L3 programming layer <2021-08-27>
+Inserting `tracingstacklevels' at position 1 in `input_level_string'.
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/base/article.cls
+Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/base/size10.clo
+File: size10.clo 2021/02/12 v1.4n Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from C:/Users/willow/AppData/Local/
+MiKTeX/luatex-cache/generic/names/luaotfload-names.luc)
+\c@part=\count179
+\c@section=\count180
+\c@subsection=\count181
+\c@subsubsection=\count182
+\c@paragraph=\count183
+\c@subparagraph=\count184
+\c@figure=\count185
+\c@table=\count186
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.sty
+Package: babel 2021/07/22 3.63 The Babel package
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.def
+File: babel.def 2021/07/22 3.63 Babel common definitions
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/babel/luababel.def
+\bbl@readstream=\read2
+\l@afrikaans=\language2
+Package babel Info: Non-standard hyphenation setup on input line 118.
+\l@ancientgreek=\language3
+\l@armenian=\language4
+\l@assamese=\language5
+\l@basque=\language6
+\l@belarusian=\language7
+\l@bengali=\language8
+\l@bokmal=\language9
+\l@bulgarian=\language10
+\l@catalan=\language11
+\l@churchslavonic=\language12
+\l@classiclatin=\language13
+\l@coptic=\language14
+\l@croatian=\language15
+\l@czech=\language16
+\l@danish=\language17
+\l@dutch=\language18
+\l@esperanto=\language19
+\l@estonian=\language20
+\l@ethiopic=\language21
+\l@finnish=\language22
+\l@french=\language23
+\l@friulan=\language24
+\l@galician=\language25
+\l@georgian=\language26
+\l@german=\language27
+\l@greek=\language28
+\l@gujarati=\language29
+\l@hindi=\language30
+\l@hungarian=\language31
+\l@icelandic=\language32
+\l@indonesian=\language33
+\l@interlingua=\language34
+\l@irish=\language35
+\l@italian=\language36
+\l@kannada=\language37
+\l@kurmanji=\language38
+\l@latin=\language39
+\l@latvian=\language40
+\l@lithuanian=\language41
+\l@liturgicallatin=\language42
+\l@macedonian=\language43
+\l@malayalam=\language44
+\l@marathi=\language45
+\l@mongolian=\language46
+\l@mongolianlmc=\language47
+\l@monogreek=\language48
+\l@ngerman=\language49
+\l@nynorsk=\language50
+\l@occitan=\language51
+\l@oriya=\language52
+\l@pali=\language53
+\l@panjabi=\language54
+\l@piedmontese=\language55
+\l@polish=\language56
+\l@portuguese=\language57
+\l@romanian=\language58
+\l@romansh=\language59
+\l@russian=\language60
+\l@sanskrit=\language61
+\l@serbian=\language62
+\l@serbianc=\language63
+\l@slovak=\language64
+\l@slovenian=\language65
+\l@spanish=\language66
+\l@swedish=\language67
+\l@swissgerman=\language68
+\l@tamil=\language69
+\l@telugu=\language70
+\l@thai=\language71
+\l@turkish=\language72
+\l@turkmen=\language73
+\l@ukenglish=\language74
+\l@ukrainian=\language75
+\l@uppersorbian=\language76
+\l@usenglishmax=\language77
+\l@welsh=\language78
+\babelcatcodetablenum=\catcodetable12
+\bbl@pattcodes=\catcodetable13
+)
+\babel@savecnt=\count187
+\U@D=\dimen139
+\l@unhyphenated=\language79
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/babel/luababel.def
+\bbl@attr@locale=\attribute5
+))
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/arabi/bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/babel-english/english.
+ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language74). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language74). Reported on input line 108.
+))
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count188
+\Gm@cntv=\count189
+\c@Gm@tempcnt=\count190
+\Gm@bindingoffset=\dimen140
+\Gm@wd@mp=\dimen141
+\Gm@odd@mp=\dimen142
+\Gm@even@mp=\dimen143
+\Gm@layoutwidth=\dimen144
+\Gm@layoutheight=\dimen145
+\Gm@layouthoffset=\dimen146
+\Gm@layoutvoffset=\dimen147
+\Gm@dimlist=\toks17
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.cfg))
+ (C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count191
+\float@exts=\toks18
+\float@box=\box50
+\@float@everytoks=\toks19
+\@floatcapt=\box51
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2021/04/20 v2.17j AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks20
+\ex@=\dimen148
+))
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen149
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count192
+LaTeX Info: Redefining \frac on input line 236.
+\uproot@=\count193
+\leftroot@=\count194
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count195
+\DOTSCASE@=\count196
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box52
+\strutbox@=\box53
+\big@size=\dimen150
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count197
+\c@MaxMatrixCols=\count198
+\dotsspace@=\muskip16
+\c@parentequation=\count199
+\dspbrk@lvl=\count266
+\tag@help=\toks21
+\row@=\count267
+\column@=\count268
+\maxfields@=\count269
+\andhelp@=\toks22
+\eqnshift@=\dimen151
+\alignsep@=\dimen152
+\tagshift@=\dimen153
+\tagwidth@=\dimen154
+\totwidth@=\dimen155
+\lineht@=\dimen156
+\@envbody=\toks23
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks24
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/l3packages/xparse/xpar
+se.sty
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/l3kernel/expl3.sty
+Package: expl3 2021-08-27 L3 programming layer (loader) 
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-lu
+atex.def
+File: l3backend-luatex.def 2021-08-04 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count270
+\l__pdf_internal_box=\box54
+))
+Package: xparse 2021-08-27 L3 Experimental document command parser
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/12/05 v1.2c Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/graphics.
+cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 107.
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/graphics-def/luatex.de
+f
+File: luatex.def 2021/06/01 v1.2c Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen157
+\Gin@req@width=\dimen158
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/physics/physics.sty
+Package: physics 
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/bbm/bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/braket/braket.sty)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)) (C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen159
+\captionmargin@=\dimen160
+\captionwidth=\dimen161
+\caption@tempdima=\dimen162
+\caption@indent=\dimen163
+\caption@parindent=\dimen164
+\caption@hangindent=\dimen165
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count271
+\c@continuedfloat=\count272
+Package caption Info: float package is loaded.
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+\c@subfigure=\count273
+\c@subtable=\count274
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/csvsimple/csvsimple.st
+y
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/l3packages/l3keys2e/l3
+keys2e.sty
+Package: l3keys2e 2021-08-27 LaTeX2e option processing using LaTeX3 keys
+)
+Package: csvsimple 2022/09/20 v2.3.2 LaTeX CSV file processing
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/csvsimple/csvsimple-le
+gacy.sty
+Package: csvsimple-legacy 2022/09/20 version 2.3.2 LaTeX2e CSV file processing
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfrcs.s
+ty
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfuti
+l-common.tex
+\pgfutil@everybye=\toks25
+\pgfutil@tempdima=\dimen166
+\pgfutil@tempdimb=\dimen167
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfuti
+l-common-lists.tex))
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfuti
+l-latex.def
+\pgfutil@abb=\box55
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfrcs
+.code.tex
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pgf/pgf.revision.tex
+)
+Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
+))
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/pgf/utilities/pgfkeys.
+sty
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfkey
+s.code.tex
+\pgfkeys@pathtoks=\toks26
+\pgfkeys@temptoks=\toks27
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pgf/utilities/pgfkey
+sfiltered.code.tex
+\pgfkeys@tmptoks=\toks28
+)))
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/base/ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count275
+) (C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/tools/shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+)
+\csv@file=\read3
+\c@csvinputline=\count276
+\c@csvrow=\count277
+\c@csvcol=\count278
+\csv@out=\write3
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen168
+\lightrulewidth=\dimen169
+\cmidrulewidth=\dimen170
+\belowrulesep=\dimen171
+\belowbottomsep=\dimen172
+\aboverulesep=\dimen173
+\abovetopsep=\dimen174
+\cmidrulesep=\dimen175
+\cmidrulekern=\dimen176
+\defaultaddspace=\dimen177
+\@cmidla=\count279
+\@cmidlb=\count280
+\@aboverulesep=\dimen178
+\@belowrulesep=\dimen179
+\@thisruleclass=\count281
+\@lastruleclass=\count282
+\@thisrulewidth=\dimen180
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/supertabular/supertabu
+lar.sty
+Package: supertabular 2020/02/02 v4.1g the supertabular environment
+\c@tracingst=\count283
+\ST@wd=\dimen181
+\ST@rightskip=\skip52
+\ST@leftskip=\skip53
+\ST@parfillskip=\skip54
+\ST@pageleft=\dimen182
+\ST@headht=\dimen183
+\ST@tailht=\dimen184
+\ST@pagesofar=\dimen185
+\ST@pboxht=\dimen186
+\ST@lineht=\dimen187
+\ST@prevht=\dimen188
+\ST@toadd=\dimen189
+\ST@dimen=\dimen190
+\ST@pbox=\box56
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/footmisc/footmisc.sty
+Package: footmisc 2022/03/08 v6.0d a miscellany of footnote facilities
+\FN@temptoken=\toks29
+\footnotemargin=\dimen191
+\@outputbox@depth=\dimen192
+Package footmisc Info: Declaring symbol style bringhurst on input line 695.
+Package footmisc Info: Declaring symbol style chicago on input line 703.
+Package footmisc Info: Declaring symbol style wiley on input line 712.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 723.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 743.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 764
+.
+) (C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip55
+\bibsep=\skip56
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count284
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pdftexcmds/pdftexcmd
+s.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/infwarerr/infwarerr.
+sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks30
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/kvsetkeys/kvsetkeys.
+sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/kvdefinekeys/kvdefin
+ekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/pdfescape/pdfescape.
+sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/letltxmacro/letltxmacr
+o.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/kvoptions/kvoptions.st
+y
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen193
+\Hy@linkcounter=\count285
+\Hy@pagecounter=\count286
+ (C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/hyperref-lang
+patches.def
+File: hyperref-langpatches.def 2021-06-07 v7.00m Hyperref: patches for babel la
+nguages
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/etexcmds/etexcmds.st
+y
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count287
+ (C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/puenc.def
+File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 4073.
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count288
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen194
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/bigintcalc/bigintcal
+c.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count289
+\Field@Width=\dimen195
+\Fld@charsize=\dimen196
+Package hyperref Info: Hyper figures OFF on input line 6076.
+Package hyperref Info: Link nesting OFF on input line 6081.
+Package hyperref Info: Hyper index ON on input line 6084.
+Package hyperref Info: backreferencing OFF on input line 6091.
+Package hyperref Info: Link coloring ON on input line 6094.
+Package hyperref Info: Link coloring with OCG OFF on input line 6101.
+Package hyperref Info: PDF/A mode OFF on input line 6106.
+LaTeX Info: Redefining \ref on input line 6146.
+LaTeX Info: Redefining \pageref on input line 6150.
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count290
+\c@Item=\count291
+\c@Hfootnote=\count292
+)
+Package hyperref Info: Driver (autodetected): hluatex.
+ (C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/hluatex.def
+File: hluatex.def 2021-06-07 v7.00m Hyperref driver for luaTeX
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/stringenc/stringenc.
+sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
+e
+with kernel methods
+)
+\Fld@listcount=\count293
+\c@bookmark@seq@number=\count294
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfi
+lecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/uniquecounter/unique
+counter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+)
+\Hy@SectionHShift=\skip57
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip58
+\f@nch@O@elh=\skip59
+\f@nch@O@erh=\skip60
+\f@nch@O@olh=\skip61
+\f@nch@O@orh=\skip62
+\f@nch@O@elf=\skip63
+\f@nch@O@erf=\skip64
+\f@nch@O@olf=\skip65
+\f@nch@O@orf=\skip66
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/tocbibind/tocbibind.st
+y
+Package: tocbibind 2010/10/13 v1.5k extra ToC listings
+Package tocbibind Info: The document has section divisions on input line 50.
+
+
+Package tocbibind Note: Using section or other style headings.
+
+) (./main.aux)
+\openout1 = main.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 3
+7.
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=426.79135pt
+* \textheight=731.23584pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-52.36449pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=49.79231pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.m
+kii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count295
+\scratchdimen=\dimen197
+\scratchbox=\box57
+\nofMPsegments=\count296
+\nofMParguments=\count297
+\everyMPshowfont=\toks31
+\MPscratchCnt=\count298
+\MPscratchDim=\dimen198
+\MPnumerator=\count299
+\makeMPintoPDFobject=\count300
+\everyMPtoPDFconversion=\toks32
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-
+base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/00miktex/epstopdf-sys.
+cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: supertabular package is loaded.
+Package caption Info: End \AtBeginDocument code.
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/graphics/color.sty
+Package: color 2020/02/24 v1.2b Standard LaTeX Color (DPC)
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: luatex.def on input line 149.
+)
+Package hyperref Info: Link coloring ON on input line 37.
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/generic/gettitlestring/getti
+tlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count301
+)
+LaTeX Info: Redefining \ref on input line 37.
+LaTeX Info: Redefining \pageref on input line 37.
+LaTeX Info: Redefining \nameref on input line 37.
+ (./main.out) (./main.out)
+\@outlinefile=\write4
+
+\openout4 = main.out
+<Pictures/LULogo.pdf, id=155, 466.74374pt x 147.55125pt>
+File: Pictures/LULogo.pdf Graphic file (type pdf)
+<use Pictures/LULogo.pdf>
+Package luatex.def Info: Pictures/LULogo.pdf  used on input line 40.
+(luatex.def)             Requested size: 116.68564pt x 36.88771pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
+
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
+
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+[1{C:/Users/willow/AppData/Local/MiKTeX/pdftex/config/pdftex.map}
+
+<./Pictures/LULogo.pdf>] (./main.toc)
+\tf@toc=\write5
+
+\openout5 = main.toc
+
+warning  (pdf backend): ignoring duplicate destination with the name 'page.'
+[1]
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <10> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 73.
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--86
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--86
+
+ []
+
+<Pictures/logicgates.png, id=227, 675.52374pt x 373.395pt>
+File: Pictures/logicgates.png Graphic file (type png)
+<use Pictures/logicgates.png>
+Package luatex.def Info: Pictures/logicgates.png  used on input line 95.
+(luatex.def)             Requested size: 149.37631pt x 82.56306pt.
+<Pictures/quantumcirc.png, id=228, 320.19624pt x 209.78375pt>
+File: Pictures/quantumcirc.png Graphic file (type png)
+<use Pictures/quantumcirc.png>
+Package luatex.def Info: Pictures/quantumcirc.png  used on input line 101.
+(luatex.def)             Requested size: 149.37631pt x 97.86853pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--107
+
+ []
+
+[1]
+Underfull \hbox (badness 10000) in paragraph at lines 109--112
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--119
+
+ []
+
+[2<./Pictures/logicgates.png><./Pictures/quantumcirc.png>]
+<Pictures/tiny-circuit.png, id=276, 136.71075pt x 72.87225pt>
+File: Pictures/tiny-circuit.png Graphic file (type png)
+<use Pictures/tiny-circuit.png>
+Package luatex.def Info: Pictures/tiny-circuit.png  used on input line 139.
+(luatex.def)             Requested size: 106.69783pt x 56.87682pt.
+<Pictures/cnot-circuit.png, id=277, 152.36925pt x 107.2005pt>
+File: Pictures/cnot-circuit.png Graphic file (type png)
+<use Pictures/cnot-circuit.png>
+Package luatex.def Info: Pictures/cnot-circuit.png  used on input line 146.
+(luatex.def)             Requested size: 128.0387pt x 90.08705pt.
+<Pictures/cnot-circuit-swap.png, id=281, 213.79875pt x 98.16675pt>
+File: Pictures/cnot-circuit-swap.png Graphic file (type png)
+<use Pictures/cnot-circuit-swap.png>
+Package luatex.def Info: Pictures/cnot-circuit-swap.png  used on input line 163
+.
+(luatex.def)             Requested size: 170.71393pt x 78.3837pt.
+ [3<./Pictures/tiny-circuit.png><./Pictures/cnot-circuit.png><./Pictures/cnot-ci
+rcuit-swap.png>]
+<Pictures/bloch_sphere.png, id=300, 803.0pt x 854.19125pt>
+File: Pictures/bloch_sphere.png Graphic file (type png)
+<use Pictures/bloch_sphere.png>
+Package luatex.def Info: Pictures/bloch_sphere.png  used on input line 195.
+(luatex.def)             Requested size: 106.69783pt x 113.49913pt.
+
+[4] [5<./Pictures/bloch_sphere.png>]
+<Pictures/groversketch.png, id=354, 689.57625pt x 350.30875pt>
+File: Pictures/groversketch.png Graphic file (type png)
+<use Pictures/groversketch.png>
+Package luatex.def Info: Pictures/groversketch.png  used on input line 258.
+(luatex.def)             Requested size: 256.07741pt x 130.08794pt.
+ [6]
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 265
+.
+
+(C:/Users/willow/AppData/Local/Programs/MiKTeX/tex/latex/bbm/ubbm.fd
+File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
+)
+<Pictures/gas_diagram.png, id=370, 815.4465pt x 814.242pt>
+File: Pictures/gas_diagram.png Graphic file (type png)
+<use Pictures/gas_diagram.png>
+Package luatex.def Info: Pictures/gas_diagram.png  used on input line 287.
+(luatex.def)             Requested size: 140.84335pt x 140.63083pt.
+
+Overfull \hbox (28.14084pt too wide) in paragraph at lines 287--288
+[][] 
+ []
+
+[7<./Pictures/groversketch.png><./Pictures/gas_diagram.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 297--299
+
+ []
+
+<Pictures/esiplot.png, id=396, 740.7675pt x 546.04pt>
+File: Pictures/esiplot.png Graphic file (type png)
+<use Pictures/esiplot.png>
+Package luatex.def Info: Pictures/esiplot.png  used on input line 319.
+(luatex.def)             Requested size: 256.07741pt x 188.75893pt.
+[8<./Pictures/esiplot.png>]
+<Pictures/trappist.jpg, id=413, 499.11469pt x 380.92313pt>
+File: Pictures/trappist.jpg Graphic file (type jpg)
+<use Pictures/trappist.jpg>
+Package luatex.def Info: Pictures/trappist.jpg  used on input line 362.
+(luatex.def)             Requested size: 256.07741pt x 195.44232pt.
+ [9<./Pictures/trappist.jpg>]
+<Pictures/runtime2plot.png, id=427, 406.8801pt x 312.2064pt>
+File: Pictures/runtime2plot.png Graphic file (type png)
+<use Pictures/runtime2plot.png>
+Package luatex.def Info: Pictures/runtime2plot.png  used on input line 379.
+(luatex.def)             Requested size: 277.41176pt x 212.86444pt.
+<Pictures/grover_errors.png, id=430, 460.3599pt x 398.9304pt>
+File: Pictures/grover_errors.png Graphic file (type png)
+<use Pictures/grover_errors.png>
+Package luatex.def Info: Pictures/grover_errors.png  used on input line 392.
+(luatex.def)             Requested size: 341.43437pt x 295.87955pt.
+ [10<./Pictures/runtime2plot.png>]
+<Pictures/errorp0.png, id=439, 668.4975pt x 472.76625pt>
+File: Pictures/errorp0.png Graphic file (type png)
+<use Pictures/errorp0.png>
+Package luatex.def Info: Pictures/errorp0.png  used on input line 405.
+(luatex.def)             Requested size: 213.39568pt x 150.91316pt.
+<Pictures/errorp9.png, id=440, 593.21625pt x 423.5825pt>
+File: Pictures/errorp9.png Graphic file (type png)
+<use Pictures/errorp9.png>
+Package luatex.def Info: Pictures/errorp9.png  used on input line 411.
+(luatex.def)             Requested size: 213.39568pt x 152.37325pt.
+<Pictures/runtimeplot.png, id=441, 606.265pt x 443.6575pt>
+File: Pictures/runtimeplot.png Graphic file (type png)
+<use Pictures/runtimeplot.png>
+Package luatex.def Info: Pictures/runtimeplot.png  used on input line 421.
+(luatex.def)             Requested size: 341.43437pt x 249.86136pt.
+ [11<./Pictures/grover_errors.png><./Pictures/errorp0.png><./Pictures/errorp9.pn
+g>]
+<Pictures/CPU vs GPU full.png, id=464, 617.1858pt x 476.982pt>
+File: Pictures/CPU vs GPU full.png Graphic file (type png)
+<use Pictures/CPU vs GPU full.png>
+Package luatex.def Info: Pictures/CPU vs GPU full.png  used on input line 438.
+(luatex.def)             Requested size: 426.79135pt x 329.85301pt.
+ [12<./Pictures/runtimeplot.png>] [13<./Pictures/CPU vs GPU full.png>] [14]
+<Pictures/Shor's Circuit Diagram.png, id=514, 672.5125pt x 279.0425pt>
+File: Pictures/Shor's Circuit Diagram.png Graphic file (type png)
+<use Pictures/Shor's Circuit Diagram.png>
+Package luatex.def Info: Pictures/Shor's Circuit Diagram.png  used on input lin
+e 515.
+(luatex.def)             Requested size: 256.07741pt x 106.2544pt.
+ [15<./Pictures/Shor's Circuit Diagram.png>]
+Overfull \hbox (11.67041pt too wide) in paragraph at lines 524--525
+[]\TU/lmss/m/n/10 For each col-umn in this ma-trix, write out the col-umn num-be
+r $\OML/cmm/m/it/10 c$ \TU/lmss/m/n/10 as a bi-nary num-ber: $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 l[]:::l[]m[]:::m[]\OT1/cmr/m/n/10 )$\TU/lmss/m/n/10 . 
+ []
+
+<Pictures/qft_nc.png, id=540, 555.2745pt x 145.14224pt>
+File: Pictures/qft_nc.png Graphic file (type png)
+<use Pictures/qft_nc.png>
+Package luatex.def Info: Pictures/qft_nc.png  used on input line 535.
+(luatex.def)             Requested size: 362.77525pt x 94.82855pt.
+[16<./Pictures/qft_nc.png>]
+<Pictures/Shor Factor 15/shor 3 bits factor 15 errorp 0.png, id=566, 462.528pt 
+x 346.896pt>
+File: Pictures/Shor Factor 15/shor 3 bits factor 15 errorp 0.png Graphic file (
+type png)
+<use Pictures/Shor Factor 15/shor 3 bits factor 15 errorp 0.png>
+Package luatex.def Info: Pictures/Shor Factor 15/shor 3 bits factor 15 errorp 0
+.png  used on input line 569.
+(luatex.def)             Requested size: 213.39568pt x 160.05048pt.
+<Pictures/Shor Factor 15/shor 4 bits factor 15 errorp 0.png, id=567, 462.528pt 
+x 346.896pt>
+File: Pictures/Shor Factor 15/shor 4 bits factor 15 errorp 0.png Graphic file (
+type png)
+<use Pictures/Shor Factor 15/shor 4 bits factor 15 errorp 0.png>
+Package luatex.def Info: Pictures/Shor Factor 15/shor 4 bits factor 15 errorp 0
+.png  used on input line 573.
+(luatex.def)             Requested size: 213.39568pt x 160.05048pt.
+<Pictures/Shor Factor 15/shor 5 bits factor 15.png, id=568, 462.528pt x 346.896
+pt>
+File: Pictures/Shor Factor 15/shor 5 bits factor 15.png Graphic file (type png)
+
+<use Pictures/Shor Factor 15/shor 5 bits factor 15.png>
+Package luatex.def Info: Pictures/Shor Factor 15/shor 5 bits factor 15.png  use
+d on input line 577.
+(luatex.def)             Requested size: 213.39568pt x 160.05048pt.
+<Pictures/Shor Factor 15/shor 6 bits factor 15.png, id=569, 518.1759pt x 390.98
+07pt>
+File: Pictures/Shor Factor 15/shor 6 bits factor 15.png Graphic file (type png)
+
+<use Pictures/Shor Factor 15/shor 6 bits factor 15.png>
+Package luatex.def Info: Pictures/Shor Factor 15/shor 6 bits factor 15.png  use
+d on input line 581.
+(luatex.def)             Requested size: 213.39568pt x 161.01306pt.
+<Pictures/Shor Factor 15/shor factor 15 bitsize test.png, id=571, 388.45125pt x
+ 312.56775pt>
+File: Pictures/Shor Factor 15/shor factor 15 bitsize test.png Graphic file (typ
+e png)
+<use Pictures/Shor Factor 15/shor factor 15 bitsize test.png>
+Package luatex.def Info: Pictures/Shor Factor 15/shor factor 15 bitsize test.pn
+g  used on input line 594.
+(luatex.def)             Requested size: 204.85802pt x 164.84454pt.
+<Pictures/Shor Factor 15/shor_39_factor_graph.png, id=572, 385.44pt x 279.444pt
+>
+File: Pictures/Shor Factor 15/shor_39_factor_graph.png Graphic file (type png)
+<use Pictures/Shor Factor 15/shor_39_factor_graph.png>
+Package luatex.def Info: Pictures/Shor Factor 15/shor_39_factor_graph.png  used
+ on input line 598.
+(luatex.def)             Requested size: 221.93332pt x 160.90077pt.
+ [17<./Pictures/Shor Factor 15/shor 3 bits factor 15 errorp 0.png><./Pictures/Sh
+or Factor 15/shor 4 bits factor 15 errorp 0.png><./Pictures/Shor Factor 15/shor 
+5 bits factor 15.png><./Pictures/Shor Factor 15/shor 6 bits factor 15.png>]
+<Pictures/RSA Breaking/rsa_cracking_alt.png, id=585, 448.074pt x 339.06676pt>
+File: Pictures/RSA Breaking/rsa_cracking_alt.png Graphic file (type png)
+<use Pictures/RSA Breaking/rsa_cracking_alt.png>
+Package luatex.def Info: Pictures/RSA Breaking/rsa_cracking_alt.png  used on in
+put line 608.
+(luatex.def)             Requested size: 341.43437pt x 258.37633pt.
+ [18<./Pictures/Shor Factor 15/shor factor 15 bitsize test.png><./Pictures/Shor 
+Factor 15/shor_39_factor_graph.png><./Pictures/RSA Breaking/rsa_cracking_alt.png
+>]
+<Pictures/Shor Factor 15/factor 15 error test.png, id=600, 395.67825pt x 315.57
+9pt>
+File: Pictures/Shor Factor 15/factor 15 error test.png Graphic file (type png)
+<use Pictures/Shor Factor 15/factor 15 error test.png>
+Package luatex.def Info: Pictures/Shor Factor 15/factor 15 error test.png  used
+ on input line 623.
+(luatex.def)             Requested size: 277.41176pt x 221.26494pt.
+<Pictures/Shor Factor 15/factor 15 error test 2.png, id=601, 355.92975pt x 304.
+7385pt>
+File: Pictures/Shor Factor 15/factor 15 error test 2.png Graphic file (type png
+)
+<use Pictures/Shor Factor 15/factor 15 error test 2.png>
+Package luatex.def Info: Pictures/Shor Factor 15/factor 15 error test 2.png  us
+ed on input line 627.
+(luatex.def)             Requested size: 277.41176pt x 237.52766pt.
+ [19<./Pictures/Shor Factor 15/factor 15 error test.png><./Pictures/Shor Factor 
+15/factor 15 error test 2.png>]
+<Pictures/RSA Breaking/rsa break errorp test 3 qubits.png, id=612, 390.86024pt 
+x 264.38776pt>
+File: Pictures/RSA Breaking/rsa break errorp test 3 qubits.png Graphic file (ty
+pe png)
+<use Pictures/RSA Breaking/rsa break errorp test 3 qubits.png>
+Package luatex.def Info: Pictures/RSA Breaking/rsa break errorp test 3 qubits.p
+ng  used on input line 641.
+(luatex.def)             Requested size: 298.75264pt x 202.09056pt.
+<Pictures/RSA Breaking/rsa break errorp test 4 qubits.png, id=613, 398.6895pt x
+ 271.61475pt>
+File: Pictures/RSA Breaking/rsa break errorp test 4 qubits.png Graphic file (ty
+pe png)
+<use Pictures/RSA Breaking/rsa break errorp test 4 qubits.png>
+Package luatex.def Info: Pictures/RSA Breaking/rsa break errorp test 4 qubits.p
+ng  used on input line 645.
+(luatex.def)             Requested size: 298.75264pt x 203.52818pt.
+ [20<./Pictures/RSA Breaking/rsa break errorp test 3 qubits.png><./Pictures/RSA 
+Breaking/rsa break errorp test 4 qubits.png>]
+<Pictures/Time taken to classically factorize a semiprime that would require q 
+qubits Large.png, id=626, 642.4pt x 408.52625pt>
+File: Pictures/Time taken to classically factorize a semiprime that would requi
+re q qubits Large.png Graphic file (type png)
+<use Pictures/Time taken to classically factorize a semiprime that would requir
+e q qubits Large.png>
+Package luatex.def Info: Pictures/Time taken to classically factorize a semipri
+me that would require q qubits Large.png  used on input line 662.
+(luatex.def)             Requested size: 426.79135pt x 271.4172pt.
+ [21<./Pictures/Time taken to classically factorize a semiprime that would requi
+re q qubits Large.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 675--680
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 675--680
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 682--689
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 682--689
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 682--689
+
+ []
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 691--699
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 691--699
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 691--699
+
+ []
+
+[23] (./main.bbl [24]) [25]
+<Pictures/quantumgates.png, id=698, 547.04375pt x 538.01pt>
+File: Pictures/quantumgates.png Graphic file (type png)
+<use Pictures/quantumgates.png>
+Package luatex.def Info: Pictures/quantumgates.png  used on input line 718.
+(luatex.def)             Requested size: 426.79135pt x 419.74461pt.
+ [26<./Pictures/quantumgates.png>] [27]
+<Pictures/errorp03.png, id=721, 606.265pt x 425.59pt>
+File: Pictures/errorp03.png Graphic file (type png)
+<use Pictures/errorp03.png>
+Package luatex.def Info: Pictures/errorp03.png  used on input line 766.
+(luatex.def)             Requested size: 256.07741pt x 179.76613pt.
+<Pictures/errorp05.png, id=722, 606.265pt x 418.56375pt>
+File: Pictures/errorp05.png Graphic file (type png)
+<use Pictures/errorp05.png>
+Package luatex.def Info: Pictures/errorp05.png  used on input line 772.
+(luatex.def)             Requested size: 256.07741pt x 176.7983pt.
+<Pictures/errorp07.png, id=723, 606.265pt x 420.57124pt>
+File: Pictures/errorp07.png Graphic file (type png)
+<use Pictures/errorp07.png>
+Package luatex.def Info: Pictures/errorp07.png  used on input line 778.
+(luatex.def)             Requested size: 256.07741pt x 177.64624pt.
+ [28<./Pictures/errorp03.png><./Pictures/errorp05.png><./Pictures/errorp07.png>] [29]
+(./main.aux)
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 06A22F588873DB712101E2763BC2478E;7946.
+)
+
+Here is how much of LuaTeX's memory you used:
+ 16766 strings out of 478106
+ 125007,662416 words of node,token memory allocated
+ 975 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 9 glue, 4 kern, 4 sub_mlist, 1 glyph, 129 attribute
+, 57 glue_spec, 66 attribute_list, 2 write, 6 pdf_action nodes
+   avail lists: 2:1278,3:566,4:288,5:619,6:110,7:11489,8:95,9:974,10:29,11:977
+ 36035 multiletter control sequences out of 65536+600000
+ 92 fonts using 8051239 bytes
+ 67i,12n,66p,1587b,530s stack positions out of 5000i,500n,10000p,200000b,80000s
+<//?/c:/users/willow/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmo
+no10-regular.otf><//?/c:/users/willow/appdata/local/programs/miktex/fonts/openty
+pe/public/lm/lmroman10-regular.otf><<C:\Users\willow\AppData\Local\MiKTeX\fonts/
+pk/ljfour/public/bbm/dpi600\bbm10.pk>><//?/c:/users/willow/appdata/local/program
+s/miktex/fonts/opentype/public/lm/lmsans8-regular.otf><//?/c:/users/willow/appda
+ta/local/programs/miktex/fonts/opentype/public/lm/lmsans10-oblique.otf><//?/c:/u
+sers/willow/appdata/local/programs/miktex/fonts/opentype/public/lm/lmsans9-regul
+ar.otf><//?/c:/users/willow/appdata/local/programs/miktex/fonts/opentype/public/
+lm/lmsans12-regular.otf><//?/c:/users/willow/appdata/local/programs/miktex/fonts
+/opentype/public/lm/lmsans10-bold.otf><//?/c:/users/willow/appdata/local/program
+s/miktex/fonts/opentype/public/lm/lmsans10-regular.otf><C:/Users/willow/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/willow
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/User
+s/willow/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb
+><C:/Users/willow/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmex
+tra/cmex7.pfb><C:/Users/willow/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb><C:/Users/willow/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmmi5.pfb><C:/Users/willow/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/willow/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/willow/AppData/Local/Pr
+ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/willow/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/willow/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users
+/willow/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C
+:/Users/willow/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7
+.pfb><C:/Users/willow/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr8.pfb><C:/Users/willow/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/cm/cmr9.pfb><C:/Users/willow/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><C:/Users/willow/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/willow/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on main.pdf (31 pages, 2004717 bytes).
+
+PDF statistics: 858 PDF objects out of 1000 (max. 8388607)
+ 185 named destinations out of 1000 (max. 131072)
+ 305 words of extra memory for PDF output out of 10000 (max. 100000000)
+

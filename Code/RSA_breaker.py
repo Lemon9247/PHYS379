@@ -191,8 +191,8 @@ Working Register = {} Qubits""".format(trials,shots,bitnumber)
 	plt.show()
 
 if __name__=="__main__":
-	#main()
+	main()
 	#test_errorp()
-	plot_data("1678447330/y","1678447330/errors")
+	#plot_data("1678447330/y","1678447330/errors")
 	#while True:
 	#	crack_key(verbose=True)

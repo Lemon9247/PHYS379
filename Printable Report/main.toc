@@ -1,0 +1,40 @@
+\babel@toc {english}{}\relax 
+\thispagestyle {empty}
+\contentsline {section}{\numberline {1}General Introduction to Quantum Computing}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}States, Operators and Quantum Circuits}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Simulation of Quantum Circuits}{2}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Simulating quantum logic gates}{3}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Simulating measurement}{4}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Hardware Limitations}{4}{subsubsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.3}Simulation of Quantum Error}{4}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Grover's Algorithm and Exoplanet Habitability}{6}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Grover's Algorithm}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Grover Adaptive Search (GAS) and the Durr-Hoyer Algorithm}{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Finding Habitable Exoplanets in a Database}{8}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Exoplanet Habitability and the Earth Similarity Index}{8}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Applying GAS to the Database}{8}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.4}Tests of Grover Search and the Durr-Hoyer Algorithm}{10}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Searching for a range of values}{10}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Error Simulation}{10}{subsubsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.5}Hardware Acceleration}{12}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Shor's Algorithm and the RSA Cryptosystem}{14}{section.3}%
+\contentsline {subsection}{\numberline {3.1}RSA Encryption/Decryption Algorithm}{14}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Shor's Algorithm}{14}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}The Quantum Period-Finding Subroutine}{15}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Modular Exponentiation}{15}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Inverse Quantum Fourier Transform}{16}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Estimating the period}{16}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Results}{17}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Implementation of Shor's Algorithm}{17}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Error Simulation}{19}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.3}A Classical Version of Shor's Algorithm}{20}{subsubsection.3.3.3}%
+\contentsline {section}{\numberline {4}Conclusions}{22}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Unstructured Search and Quantum Algorithms}{22}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Security}{22}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Further work}{23}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Acknowledgements}{24}{section.5}%
+\contentsline {section}{\numberline {6}Bibliography}{24}{section.6}%
+\contentsline {section}{\numberline {A}Appendix}{26}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Table of Quantum Logic Gates}{26}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}ESI Database}{27}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Further Error Modelling Tests for the Durr-Hoyer Algorithm}{28}{subsection.A.3}%

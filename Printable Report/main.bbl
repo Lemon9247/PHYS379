@@ -1,0 +1,198 @@
+\begin{thebibliography}{26}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Candela(2015)]{candela}
+D.~Candela.
+\newblock Undergraduate computational physics projects on quantum computing.
+\newblock \emph{American Journal of Physics}, 83:\penalty0 688, 2015.
+\newblock \doi{10.1119/1.4922296}.
+
+\bibitem[Nielsen and Chuang(2000 (republished 2010))]{nielsenChuang}
+M.~A. Nielsen and I.~L. Chuang.
+\newblock \emph{Quantum Computation and Quantum Information}.
+\newblock Cambridge University Press, {10th Anniversary} edition, 2000
+  (republished 2010).
+
+\bibitem[Griffiths and Schroeter(1995 (republished 2018))]{griffiths}
+D.~J. Griffiths and D.~F. Schroeter.
+\newblock \emph{Introduction to Quantum Mechanics}.
+\newblock Cambridge University Press, 3rd edition, 1995 (republished 2018).
+
+\bibitem[Gisin et~al.(2002)Gisin, Ribordy, Tittel, and Zbinden]{quantumcrypt}
+N.~Gisin, G.~Ribordy, W.~Tittel, and H.~Zbinden.
+\newblock Quantum cryptography.
+\newblock \emph{Reviews of Modern Physics}, 74:\penalty0 145--195, 2002.
+\newblock \doi{10.1103/RevModPhys.74.145}.
+
+\bibitem[Grover(1996)]{grover}
+L.~K. Grover.
+\newblock {A fast quantum mechanical algorithm for database search}.
+\newblock In \emph{Proceedings of the Twenty-Eighth Annual ACM Symposium on
+  Theory of Computing}, page 212–219, 1996.
+\newblock \doi{10.1145/237814.237866}.
+
+\bibitem[{R. Rivest, A. Shamir, L. Adleman}(1978)]{RSA}
+{R. Rivest, A. Shamir, L. Adleman}.
+\newblock A method for obtaining digital signatures and public-key
+  cryptosystems.
+\newblock \emph{Communications of the ACM}, 21\penalty0 (2):\penalty0
+  120–126, 1978.
+\newblock \doi{10.1145/359340.359342}.
+
+\bibitem[Shor(1994)]{Shors_algorithm}
+P.W. Shor.
+\newblock {Algorithms for quantum computation: discrete logarithms and
+  factoring}.
+\newblock In \emph{Proceedings of the 35th Annual Symposium on Foundations of
+  Computer Science}, pages 124--134. Institute of Electrical and Electronics
+  Engineers, 1994.
+\newblock \doi{10.1109/SFCS.1994.365700}.
+
+\bibitem[Kuphaldt(2007)]{circuitbook}
+T.~R. Kuphaldt.
+\newblock \emph{Lessons In Electric Circuits}, volume~IV.
+\newblock Open Education Resource (OER) LibreTexts Project, 2007.
+\newblock Fourth Edition, last update November 06, 2021.
+
+\bibitem[Charemza(2006)]{exquantumcirc}
+M.~Charemza.
+\newblock Examples of quantum circuit diagrams.
+\newblock URL \url{http://go.warwick.ac.uk/mtcharemza/pastprojects}, April
+  2006.
+\newblock [Accessed 03/2023].
+
+\bibitem[Van~Rossum and Drake(2009)]{python}
+Guido Van~Rossum and Fred~L. Drake.
+\newblock \emph{Python 3 Reference Manual}.
+\newblock CreateSpace, 2009.
+
+\bibitem[Harris et~al.(2020)Harris, Millman, van~der Walt, Gommers, Virtanen,
+  Cournapeau, Wieser, Taylor, Berg, Smith, Kern, Picus, Hoyer, van Kerkwijk,
+  Brett, Haldane, Fernández~del Río, Wiebe, Peterson, Gérard-Marchant,
+  Sheppard, Reddy, Weckesser, Abbasi, Gohlke, and Oliphant]{numpy}
+C.~R. Harris, K.~J. Millman, S.~J. van~der Walt, R.~Gommers, P.~Virtanen,
+  D.~Cournapeau, E.~Wieser, J.~Taylor, S.~Berg, N.~J. Smith, R.~Kern, M.~Picus,
+  S.~Hoyer, M.~H. van Kerkwijk, M.~Brett, A.~Haldane, J.~Fernández~del Río,
+  M.~Wiebe, P.~Peterson, P.~Gérard-Marchant, K.~Sheppard, T.~Reddy,
+  W.~Weckesser, H.~Abbasi, C.~Gohlke, and T.~E. Oliphant.
+\newblock Array programming with {NumPy}.
+\newblock \emph{Nature}, 585:\penalty0 357–362, 2020.
+\newblock \doi{10.1038/s41586-020-2649-2}.
+
+\bibitem[Commons(2009)]{blochPicture}
+Wikimedia Commons.
+\newblock Bloch sphere.svg.
+\newblock URL \url{https://commons.wikimedia.org/wiki/File:Bloch_sphere.svg},
+  2009.
+\newblock License: Creative Commons Attribution-ShareAlike 3.0 Unported (CC
+  BY-SA 3.0), [Accessed 09/03/2023].
+
+\bibitem[Chen(1989)]{chenGroup}
+J.Q. Chen.
+\newblock \emph{Group Representation Theory For Physicists}.
+\newblock World Scientific, 1989.
+
+\bibitem[W.~P.~Baritompa and Wood(2005)]{baritompa}
+D.~W.~Bulger W.~P.~Baritompa and G.~R. Wood.
+\newblock Grover's quantum algorithm applied to global optimization.
+\newblock \emph{SIAM Journal on Optimization}, 15\penalty0 (4):\penalty0 1170,
+  2005.
+\newblock \doi{10.1137/040605072}.
+
+\bibitem[C.~Durr(1996)]{durrhoyer}
+P.~Hoyer C.~Durr.
+\newblock A quantum algorithm for finding the minimum.
+\newblock \url{https://arxiv.org/abs/quant-ph/9607014}, July 1996.
+
+\bibitem[A.~Wolszczan(1992)]{exoplanet}
+D.~A.~Frail A.~Wolszczan.
+\newblock A planetary system around the millisecond pulsar psr1257 + 12.
+\newblock \emph{Nature}, 355 (6356):\penalty0 145–147, 1992.
+\newblock \doi{10.1038/355145a0}.
+
+\bibitem[Schulze-Makuch et~al.(2011)Schulze-Makuch, Méndez, Fairén,
+  Von~Paris, Turse, Boyer, Davila, Walther-António, Catling, and
+  Irwin]{ESIpaper}
+D.~Schulze-Makuch, A.~Méndez, A.~Fairén, P.~Von~Paris, C.~Turse, G.~Boyer,
+  A.~Davila, M.~Walther-António, D.~Catling, and L.~Irwin.
+\newblock A two-tiered approach to assessing the habitability of exoplanets.
+\newblock \emph{Astrobiology}, 11\penalty0 (10):\penalty0 1041--52, 2011.
+\newblock \doi{10.1089/ast.2010.0592}.
+
+\bibitem[TEAM(1995-2023)]{EPE}
+Exoplanet TEAM.
+\newblock The extrasolar planets encyclopaedia.
+\newblock \url{http://exoplanet.eu/}, 1995-2023.
+\newblock [Accessed: 30/01/2023].
+
+\bibitem[NVIDIA et~al.(2023)NVIDIA, Vingelmann, and Fitzek]{cuda}
+NVIDIA, P.~Vingelmann, and F.~H.P. Fitzek.
+\newblock Cuda, release: 12.0.140, 2023.
+\newblock URL \url{https://developer.nvidia.com/cuda-toolkit}.
+
+\bibitem[Okuta et~al.(2017)Okuta, Unno, Nishino, Hido, and Loomis]{cupy2017}
+R.~Okuta, Y.~Unno, D.~Nishino, S.~Hido, and C.~Loomis.
+\newblock {CuPy: A NumPy-Compatible Library for NVIDIA GPU Calculations}.
+\newblock In \emph{Proceedings of Workshop on Machine Learning Systems
+  (LearningSys) in The Thirty-first Annual Conference on Neural Information
+  Processing Systems (NIPS)}, 2017.
+\newblock URL \url{http://learningsys.org/nips17/assets/papers/paper_16.pdf}.
+
+\bibitem[Boneh(1999)]{RSAattack}
+D.~Boneh.
+\newblock Twenty years of attacks on the {RSA} cryptosystem.
+\newblock \emph{Notices of the American Mathematical Society}, 46\penalty0
+  (2):\penalty0 203--213, 1999.
+
+\bibitem[Beauregard(2003)]{shorcircuit}
+S.~Beauregard.
+\newblock Circuit for shor's algorithm using 2n+3 qubits.
+\newblock \emph{Quantum Information and Computation}, 3\penalty0 (2):\penalty0
+  175--185, 2003.
+\newblock \doi{10.48550/ARXIV.QUANT-PH/0205095}.
+
+\bibitem[B. and D.(2015)]{nist}
+Elaine B. and Quynh D.
+\newblock {NIST Special Publication 800-57 Part 3 Revision 1: Recommendation
+  for Key Management: Application-Specific Key Management Guidance}.
+\newblock \emph{National Institute of Standards and Technology}, 2015.
+\newblock \doi{10.6028/NIST.SP.800-57pt3r1}.
+
+\bibitem[Institute(2017)]{ETSI_threat_assess}
+European Telecommunications~Standards Institute.
+\newblock {ETSI GR QSC 004 V1.1.1 Quantum-Safe Cryptography; Quantum-Safe
+  Threat Assessment}, 2017.
+\newblock URL
+  \url{https://www.etsi.org/deliver/etsi_gr/QSC/001_099/004/01.01.01_60/gr_QSC004v010101p.pdf}.
+
+\bibitem[Virtanen et~al.(2020)Virtanen, Gommers, Oliphant, Haberland, Reddy,
+  Cournapeau, Burovski, Peterson, Weckesser, Bright, {van der Walt}, Brett,
+  Wilson, Millman, Mayorov, Nelson, Jones, Kern, Larson, Carey, Polat, Feng,
+  Moore, {VanderPlas}, Laxalde, Perktold, Cimrman, Henriksen, Quintero, Harris,
+  Archibald, Ribeiro, Pedregosa, {van Mulbregt}, and {SciPy 1.0
+  Contributors}]{2020SciPy-NMeth}
+P.~Virtanen, R.~Gommers, T.~E. Oliphant, M.~Haberland, T.~Reddy, D.~Cournapeau,
+  E.~Burovski, P.~Peterson, W.~Weckesser, J.~Bright, S.~J. {van der Walt},
+  M.~Brett, J.~Wilson, K.~J. Millman, N.~Mayorov, A.~R.~J. Nelson, E.~Jones,
+  R.~Kern, E.~Larson, C~J Carey, {\.I}.~Polat, Y.~Feng, E.~W. Moore,
+  J.~{VanderPlas}, D.~Laxalde, J.~Perktold, R.~Cimrman, I.~Henriksen, E.~A.
+  Quintero, C.~R. Harris, A.~M. Archibald, A.~H. Ribeiro, F.~Pedregosa, P.~{van
+  Mulbregt}, and {SciPy 1.0 Contributors}.
+\newblock {{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in
+  Python}.
+\newblock \emph{Nature Methods}, 17:\penalty0 261--272, 2020.
+\newblock \doi{10.1038/s41592-019-0686-2}.
+
+\bibitem[Commons(2019)]{gate_table}
+Wikimedia Commons.
+\newblock File:quantum logic gates.png.
+\newblock URL
+  \url{https://commons.wikimedia.org/wiki/File:Quantum_Logic_Gates.png}, 2019.
+\newblock License: Creative Commons Attribution-ShareAlike 4.0 International
+  (CC BY-SA 4.0)[Accessed 09/03/2023].
+
+\end{thebibliography}
